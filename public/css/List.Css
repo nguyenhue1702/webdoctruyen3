@@ -1,0 +1,55 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-danhsach{
+    display: flex;
+    width: 100%;
+    height: 100%;
+position: absolute;
+top:100px;
+
+}
+
+.table-list th{
+        border-top: 0.1px solid #ddd;  
+        border-left: 0.1px solid #ddd;  
+}
+.table-list tr{
+    border: 1px solid #ddd;
+}
+.table-list table{
+    width: 100%;
+      
+        color: var(--text-color);
+}
+.table-list td{
+    height: 30px;
+    text-align: center;
+  border: 1px solid #ddd;
+   
+    
+}
+
+.table-list{
+    position: absolute;
+    left: 100px;
+    top:30px;
+}
+textarea{
+    padding: 10px 10px;
+}
+.table-list table td:nth-child(2){
+    width: 200px;
+}
+.table-list table td:nth-child(3){
+    width: 100px;
+}
+.table-list table td:nth-child(4){
+    width: 200px;
+}

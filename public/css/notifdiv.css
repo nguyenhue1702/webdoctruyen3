@@ -1,0 +1,18 @@
+#notifDiv {
+     border-radius: 10px;
+     z-index: 10000;
+     display: none;
+     background: green;
+     font-weight: 450;
+     width: 350px;
+     position: fixed;
+     top: 5%;
+     right: 10px;
+     color: white;
+     padding: 5px 20px
+}
+
+.slow .toggle-group {
+     transition: left 0.7s;
+     -webkit-transition: left 0.7s;
+}

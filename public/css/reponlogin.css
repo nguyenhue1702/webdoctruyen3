@@ -1,0 +1,57 @@
+@media screen and (max-width:456px) {
+    .col-7{
+        display: none !important;
+        width: 0px;
+    }
+    .col-5{
+        width: 100% !important;
+    }
+    .form-login{
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    .nen{
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
+    }
+    .nenquay {
+        width: 400px !important;
+        height: 300px !important;
+        background-color: rgba(255,255,255,0.07);
+        position: absolute;
+        will-change: border-radius, transform;
+        transform-origin: 55% 55%;
+        pointer-events: none;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        z-index: -10;
+        top: 0px;
+        left: 0px;
+        animation: morph 15s linear infinite alternate, spin 20s linear infinite;
+    }
+    .nenquay2 {
+        width: 400px !important;
+        height: 320px !important;
+        background-color: rgba(255,255,255,0.07);
+        position: absolute;
+        will-change: border-radius, transform;
+        transform-origin: 55% 55%;
+        pointer-events: none;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        z-index: -10;
+        top: 20% !important;
+        right: 0px !important;
+    }
+    .input-box label {
+       
+        font-size: 16px;
+        position: absolute;
+        top: -15px !important;
+        left: 15px;
+        color: rgb(167, 183, 197);
+        transform: translateY(170%);
+        transition: all 0.2s linear;
+        pointer-events: none;
+    }
+}

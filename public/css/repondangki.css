@@ -1,0 +1,52 @@
+@media screen and (max-width:456px) {
+    .nenquay {
+        width: 300px !important;
+        height: 200px !important;
+        background-color: rgba(255,255,255,0.07);
+        position: absolute;
+        will-change: border-radius, transform;
+        transform-origin: 55% 55%;
+        pointer-events: none;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        z-index: -10;
+        top: 0px;
+        left: 0px;
+        animation: morph 15s linear infinite alternate, spin 20s linear infinite;
+    }
+    .nenquay2 {
+        width: 300px !important;
+        height: 200px !important;
+        background-color: rgba(255,255,255,0.07);
+        position: absolute;
+        will-change: border-radius, transform;
+        transform-origin: 55% 55%;
+        pointer-events: none;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        z-index: -10;
+        top: 0px;
+        right: 0px;
+    }
+    .form-re {
+        width: 100% !important;
+        padding-left: -10px !important;
+        padding-right: -10px !important;
+    }
+    .row>* {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 100%;
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+        margin-top: var(--bs-gutter-y);
+    }
+    .bg-color {
+        background-color: rgba(14, 59, 99, 0.89);
+        color: aliceblue;
+        margin-top: 50px !important;
+        border-radius: 20px;
+        cursor: pointer;
+        color: aqua;
+        margin-left: 50px;
+        margin-bottom: 50px !important;
+    }
+}
