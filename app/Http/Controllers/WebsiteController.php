@@ -26,24 +26,23 @@ class WebsiteController extends Controller
     //@ Phần xử lí các trang hiển thị trên Website
     public function Home()
     {
-     
+
         $tendms = dmtruyen::orderBy('id', 'DESC')->get();
-     
+
         $truyen = Product::orderBy('id', 'DESC')->where('kichhoat', 0)->paginate(14);
 
-     
+
         $theloai = theloai::orderBy('id', 'DESC')->get();
-    
+
         $truyenhot = Product::orderBy('id', 'DESC')->where('hot', 0)->where('kichhoat', 0)->paginate(14);
-      
+
         $listfavourite = favourite::with('Favourite_product')->where('user_id', FacadesSession::get('id'))->get();
-        
+
         $truyenhay = DB::table('products')->orderBy('view_product', 'DESC')->where('kichhoat', 0)->paginate(9);
         $show = 'show'; //*gán biến $show = 'show'
         $banners = Banner::all()->where('show_banner', $show); //*lấy trường show_banner với điều kiện show_banner = $show ('show)
         $session_new = session::with('Product')->orderBy('id', 'DESC')->where('kichhoat', 0)->paginate(14);
         if ($banners) {
-
             return view('Website/home')->with(compact('tendms', 'banners', 'truyen', 'session_new', 'truyenhot','theloai','listfavourite','truyenhay'));
         }
     }
@@ -63,7 +62,7 @@ class WebsiteController extends Controller
         //@ do đặt tên bẳng trùg session nên là lấy facades_session để lấy id
         $layid = FacadesSession::get('id');
         $truyenhay = DB::table('products')->orderBy('view_product', 'DESC')->where('kichhoat', 0)->get();
-      
+
         $listfavourite = favourite::with('Favourite_product')->orderBy('id','DESC')->where('user_id', FacadesSession::get('id'))->paginate(10);
         $favourite = favourite::orderBy('id', 'desc')->where('user_id',$layid )->where('product_id', $id)->get();
         $session = session::orderBy('id', 'ASC')->where('id_product', $id)->paginate(7);
@@ -87,11 +86,11 @@ class WebsiteController extends Controller
         $tendms = dmtruyen::orderBy('id', 'DESC')->get();
         $theloai = theloai::orderBy('id', 'DESC')->get();
         $dm = dmtruyen::orderBy('id', 'DESC')->where('id', $id)->get();
-        //@lấy ra mảng có chứa danhmuc và lấy liên kết vs prouct với điều kiện id danh mục bằng id truyền vào 
+        //@lấy ra mảng có chứa danhmuc và lấy liên kết vs prouct với điều kiện id danh mục bằng id truyền vào
         $truyen = dmtruyen::with('nhieuTruyen')->where('id', $id)->first();
         $truyenhay = DB::table('products')->orderBy('view_product', 'DESC')->where('kichhoat', 0)->paginate(14);
         $listfavourite = favourite::with('Favourite_product')->orderBy('id','DESC')->where('user_id', FacadesSession::get('id'))->paginate(10);
-   
+
         return view('Website/formdanhmuc')->with(compact('tendms', 'truyen', 'dm','theloai','truyenhay','listfavourite'));
     }
     public function xemtheotheloai($id) {
@@ -140,7 +139,7 @@ class WebsiteController extends Controller
         }
         //@tăng view_session
         $view_session = session::where('id',$id)->first();
-     
+
         $view_session->view_session = $view_session->view_session+1;
         $view_session->save();
 
@@ -157,7 +156,7 @@ class WebsiteController extends Controller
         $theloai = theloai::orderBy('id', 'DESC')->get();
         $key = $request->key;
         $truyenhay = Product::with('danhmuc')->where('name_product', 'LIKE', '%' . $key . '%')->get();
-        
+
 
 
         return view('Website/timkiem')->with(compact('truyenhay', 'key', 'tendms','theloai'));
@@ -167,13 +166,13 @@ class WebsiteController extends Controller
         $data = $request->all();
         if ($data['keywords']) {
             $truyen = Product::where('kichhoat', 0)->where('name_product', 'LIKE', '%' . $data['keywords'] . '%')->get();
-            
+
             $output = '
             <ul class="dropdown-menu" style="display:block;">';
             foreach ($truyen as  $tr) {
                 $output .= '
             <li class="li_search_ajax"><a href="' . route('trangtruyen', [$tr->id, $tr->slug_product]) . '"><img src="/uploads/img_truyen/' . $tr->img_product . '" alt="">' . $tr->name_product . '</a></li>';
-            
+
             }
             $output .= '</ul>';
             echo $output;
@@ -189,18 +188,18 @@ class WebsiteController extends Controller
         }
     }
     public function all_baiviet_user(){
-        
+
         $tendms = dmtruyen::All();
         $theloai = theloai::orderBy('id', 'DESC')->get();
         $baiviet = articleuser::orderBy('id', 'DESC')->where('apply', '1')->paginate(10);
-       
+
         return View('Website/all_baiviet_user')->with(compact('tendms', 'theloai','baiviet'));
     }
     public function view_truyen_user(Request $request,$id){
         $tendms = dmtruyen::All();
         $theloai = theloai::orderBy('id', 'DESC')->get();
         $truyen = articleuser::with('User_baiviet')->where('id', $id)->first();
-       return view('/Website/view_baiviet_user')->with(compact('tendms','theloai','truyen',));    
+       return view('/Website/view_baiviet_user')->with(compact('tendms','theloai','truyen',));
     }
     public function dele_bv_user_web($id){
         $baiviet = articleuser::find($id);

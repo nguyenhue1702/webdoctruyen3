@@ -6,7 +6,7 @@
         <div class="col-6 style-input">
             <div class="mb-3 phanloai">
 
-                <h3>Add Category</h3>
+                <h3>Thêm Danh Mục</h3>
 
             </div>
             <form action="{{ route('add_dm') }}" method="POST">
@@ -17,38 +17,38 @@
     </div>
 @endif
                 <div class="mb-3 ">
-                    <input type="text" name="danhmuc" value="{{old('danhmuc')}}"class="form-control" placeholder="Enter Category" id="slug"
+                    <input type="text" name="danhmuc" value="{{old('danhmuc')}}"class="form-control" placeholder="Nhập danh mục" id="slug"
                         onkeyup="ChangeToSlug()">
                 </div>
                 @error('danhmuc')
                     <p class="validation-thongbao">{{ $message }}</p>
                 @enderror
-                
+
                 <div class="mb-3 ">
-                    <input spellcheck="false" type="text" name="slugdm" class="form-control" placeholder="Enter Slug"
+                    <input spellcheck="false" type="text" name="slugdm" class="form-control" placeholder="Nhập Slug"
                         id="convert_slug" value="{{old('slugdm')}}">
                 </div>
                 @error('slugdm')
                     <p class="validation-thongbao">{{ $message }}</p>
                 @enderror
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-success">Apply</button>
+                    <button type="submit" class="btn btn-success">Thêm</button>
                 </div>
             </form>
             <hr class="hr">
             <div class="mb-3 phanloai">
 
-                <h3>List Category</h3>
-    
+                <h3>Danh Sách Danh Mục</h3>
+
             </div>
             <div class="mb-3">
                 <table class="table table-sm " id="dataTables-example">
                     <thead>
                         <tr>
                             <th scope="col">STT</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">Tên danh mục</th>
                             <th scope="col">Slug</th>
-                            <th scope="col">Setting</th>
+                            <th scope="col">Hành động</th>
 
                         </tr>
                     </thead>
@@ -75,7 +75,7 @@
                             @endforeach
                     </tbody>
                 </table>
-                       
+
             </div>
 
         </div>

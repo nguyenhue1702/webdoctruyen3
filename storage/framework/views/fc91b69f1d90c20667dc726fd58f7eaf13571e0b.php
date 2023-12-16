@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!----======== CSS ======== -->
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/toast.css') }}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/toast.css')); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/notifdiv.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/all.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/all.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/SlideBar.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/Create.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/List.css') }}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/notifdiv.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/all.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/fontawesome.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/fontawesome.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/all.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/SlideBar.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/Create.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/List.css')); ?>">
 
 
     <!----===== Boxicons CSS ===== -->
@@ -24,9 +24,9 @@
 
     <!--<title>Dashboard Sidebar Menu</title>-->
     <!-- datatable -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/reponadmin.css') }}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/dataTables.bootstrap.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/bootrap.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/reponadmin.css')); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <style>
         .nav-link-edit{
@@ -56,27 +56,28 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <a href="{{ route('ShowProFile') }}"><img src="/img/avatar.png" alt=""></a>
+                    <a href="<?php echo e(route('ShowProFile')); ?>"><img src="/img/avatar.png" alt=""></a>
                 </span>
                 <div class="text logo-text">
-                    <a href="{{ route('ShowProFile') }}">
+                    <a href="<?php echo e(route('ShowProFile')); ?>">
                         <span class="name">
 
                         </span>
                     </a>
                     <span class="">
-                        @if (Session::has('name'))
-                            {{ Session::get('name') }}
-                        @endif
+                        <?php if(Session::has('name')): ?>
+                            <?php echo e(Session::get('name')); ?>
+
+                        <?php endif; ?>
                     </span>
                     <span class="profession">
-                        @if (Session::has('roleUser'))
-                            @if (Session::get('roleUser') == 2)
+                        <?php if(Session::has('roleUser')): ?>
+                            <?php if(Session::get('roleUser') == 2): ?>
                                 Admin
-                            @else
+                            <?php else: ?>
                                 Pesonnel
-                            @endif
-                        @endif
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </span>
                 </div>
             </div>
@@ -91,7 +92,7 @@
 
                 <ul class="menu-links">
                     <li class="nav-link-edit">
-                        <a href="{{ route('HomeAdmin') }}">
+                        <a href="<?php echo e(route('HomeAdmin')); ?>">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Home</span>
                         </a>
@@ -99,87 +100,87 @@
 
                     <h3>Content</h3>
                     <li class="nav-link-edit">
-                        <a href="{{ route('ListArticle') }}">
+                        <a href="<?php echo e(route('ListArticle')); ?>">
                             <i class="fa-solid fa-square-pen icon"></i>
                             <span class="text nav-text">Article</span>
                         </a>
                     </li>
-                    @if (Session::get('roleUser') >= 1)
+                    <?php if(Session::get('roleUser') >= 1): ?>
                     <li class="nav-link-edit">
-                        <a href="{{ route('ListBanner') }}">
+                        <a href="<?php echo e(route('ListBanner')); ?>">
                             <i class='bx bx-images icon'></i>
                             <span class="text nav-text">Banner</span>
                         </a>
                     </li>
-                    @endif
-                    @if (Session::get('roleUser') > 1)
+                    <?php endif; ?>
+                    <?php if(Session::get('roleUser') > 1): ?>
                         <h3>Admin </h3>
 
                         <li class="nav-link-edit">
-                            <a href="{{ route('listproduct') }}">
+                            <a href="<?php echo e(route('listproduct')); ?>">
                                 <i class="fa-solid fa-book icon"></i>
                                 <span class="text nav-text">Quản Lý Truyện</span>
                             </a>
                         </li>
                         <li class="nav-link-edit">
-                            <a href="{{ route('comic_category') }}">
+                            <a href="<?php echo e(route('comic_category')); ?>">
                                 <i class="fa-solid fa-bars-staggered icon"></i>
                                 <span class="text nav-text">Danh Mục Truyện</span>
                             </a>
                         </li>
                         <li class="nav-link-edit">
-                            <a href="{{ route('page_theloai') }}">
+                            <a href="<?php echo e(route('page_theloai')); ?>">
                                 <i class='bx bxs-purchase-tag icon'></i>
                                 <span class="text nav-text">Thể Loại</span>
                             </a>
                         </li>
-                    @endif
+                    <?php endif; ?>
 
-                    @if (Session::get('roleUser') >= 1)
+                    <?php if(Session::get('roleUser') >= 1): ?>
                     <li class="nav-link-edit">
-                        <a href="{{ route('session_list') }}">
+                        <a href="<?php echo e(route('session_list')); ?>">
                             <i class="fa-solid fa-arrow-down-1-9 icon"></i>
                             <span class="text nav-text">Quản Lý Chương</span>
                         </a>
                     </li>
-                    @endif
-                    @if (Session::get('roleUser') > 1)
+                    <?php endif; ?>
+                    <?php if(Session::get('roleUser') > 1): ?>
                         <li class="nav-link-edit">
-                            <a href="{{ route('ListAuthor') }}">
+                            <a href="<?php echo e(route('ListAuthor')); ?>">
                                 <i class="fa-solid fa-user-pen icon"></i>
                                 <span class="text nav-text">Quản Lý Tác Giả</span>
                             </a>
                         </li>
                         <li class="nav-link-edit">
-                            <a href="{{ route('Publishing') }}">
+                            <a href="<?php echo e(route('Publishing')); ?>">
                                 <i class="fa-solid fa-house-laptop icon"></i>
                                 <span class="text nav-text">Nhà Xuất Bản</span>
                             </a>
                         </li>
-                    @endif
+                    <?php endif; ?>
 
                     <h3>User</h3>
-                    @if (Session::get('roleUser') > 1)
+                    <?php if(Session::get('roleUser') > 1): ?>
                         <li class="nav-link-edit">
-                            <a href="{{ route('list_users') }}">
+                            <a href="<?php echo e(route('list_users')); ?>">
                                 <i class='bx bxs-user-account icon'></i>
                                 <span class="text nav-text">Quản Lý User</span>
                             </a>
                         </li>
-                        @endif
+                        <?php endif; ?>
                         <li class="nav-link-edit" >
-                            <a href="{{ route('baiviet_user') }}">
+                            <a href="<?php echo e(route('baiviet_user')); ?>">
                                 <i class='bx bxs-user-account icon'></i>
                                 <span class="text nav-text">Bài viết User </span>
                             </a>
-                            @if(Session::get('countStatus'))
-                            <div id="numberStatus"> {{Session::get('countStatus')}}</div>
-                            @endif
+                            <?php if(Session::get('countStatus')): ?>
+                            <div id="numberStatus"> <?php echo e(Session::get('countStatus')); ?></div>
+                            <?php endif; ?>
                         </li>
 
 
                     <li class="nav-link-edit">
-                        <a href="{{ route('Home') }}" target="_blank">
+                        <a href="<?php echo e(route('Home')); ?>" target="_blank">
                             <i class='bx bx-world icon'></i>
                             <span class="text nav-text">WebSite</span>
                         </a>
@@ -192,7 +193,7 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="{{ route('Logout') }}">
+                    <a href="<?php echo e(route('Logout')); ?>">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -218,44 +219,44 @@
     </nav>
     <section class="home">
         <div class="row ps-5 py-5">
-            @yield('Admin/home_admin')
-            @yield('article_new')
-            @yield('article_list')
-            @yield('article_edit')
-            @yield('profile')
-            @yield('editdm')
-            @yield('comic_list')
-            @yield('comic_category')
-            @yield('comic_new')
-            @yield('author_list')
-            @yield('author_create')
-            @yield('author_edit')
-            @yield('Publishing')
-            @yield('Publishing_edit')
-            @yield('Publishing_new')
-            @yield('product_list')
-            @yield('product_new')
-            @yield('product_edit')
-            @yield('banner_create')
-            @yield('banner_list')
-            @yield('banner_edit')
-            @yield('session_list')
-            @yield('session_edit')
-            @yield('session_new')
-            @yield('theloai_list')
-            @yield('edit_tl')
-            @yield('user_list')
-            @yield('user_edit')
-            @yield('baiviet_user')
-            @yield('bv_user')
+            <?php echo $__env->yieldContent('Admin/home_admin'); ?>
+            <?php echo $__env->yieldContent('article_new'); ?>
+            <?php echo $__env->yieldContent('article_list'); ?>
+            <?php echo $__env->yieldContent('article_edit'); ?>
+            <?php echo $__env->yieldContent('profile'); ?>
+            <?php echo $__env->yieldContent('editdm'); ?>
+            <?php echo $__env->yieldContent('comic_list'); ?>
+            <?php echo $__env->yieldContent('comic_category'); ?>
+            <?php echo $__env->yieldContent('comic_new'); ?>
+            <?php echo $__env->yieldContent('author_list'); ?>
+            <?php echo $__env->yieldContent('author_create'); ?>
+            <?php echo $__env->yieldContent('author_edit'); ?>
+            <?php echo $__env->yieldContent('Publishing'); ?>
+            <?php echo $__env->yieldContent('Publishing_edit'); ?>
+            <?php echo $__env->yieldContent('Publishing_new'); ?>
+            <?php echo $__env->yieldContent('product_list'); ?>
+            <?php echo $__env->yieldContent('product_new'); ?>
+            <?php echo $__env->yieldContent('product_edit'); ?>
+            <?php echo $__env->yieldContent('banner_create'); ?>
+            <?php echo $__env->yieldContent('banner_list'); ?>
+            <?php echo $__env->yieldContent('banner_edit'); ?>
+            <?php echo $__env->yieldContent('session_list'); ?>
+            <?php echo $__env->yieldContent('session_edit'); ?>
+            <?php echo $__env->yieldContent('session_new'); ?>
+            <?php echo $__env->yieldContent('theloai_list'); ?>
+            <?php echo $__env->yieldContent('edit_tl'); ?>
+            <?php echo $__env->yieldContent('user_list'); ?>
+            <?php echo $__env->yieldContent('user_edit'); ?>
+            <?php echo $__env->yieldContent('baiviet_user'); ?>
+            <?php echo $__env->yieldContent('bv_user'); ?>
         </div>
     </section>
 
 
 
-    <script src="{{ asset('js/tuan.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/fontawesome.min.js') }}"></script>
+    <script src="<?php echo e(asset('js/tuan.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/fontawesome.min.js')); ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
@@ -264,21 +265,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="//cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/darkmode.min.js') }}"></script>
+    <script src="<?php echo e(asset('js/jquery.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/dataTables.bootstrap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/darkmode.min.js')); ?>"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    <script src="{{ asset('js/toogle_status.min.js') }}"></script>
+    <script src="<?php echo e(asset('js/toogle_status.min.js')); ?>"></script>
 
     <script>
 
     </script>
-    {{-- //ckeditor --}}
+    
     <script>
         CKEDITOR.replace('noidungtruyen');
         CKEDITOR.replace('noidungtruyen1');
     </script>
-    {{-- data-table --}}
+    
     <script>
         $(document).ready(function() {
             $('#dataTables-example').DataTable({
@@ -286,8 +287,8 @@
             });
         });
     </script>
-    {{-- //script toasrt thong bao --}}
-    @if (Session::has('ok'))
+    
+    <?php if(Session::has('ok')): ?>
         <script>
             toastr.options = {
                 "showMethod": "slideDown",
@@ -297,11 +298,11 @@
                 "progressBar": true,
                 "positionClass": "toast-top-center ",
             }
-            toastr.success("{{ session('ok') }}", "Thành Công");
+            toastr.success("<?php echo e(session('ok')); ?>", "Thành Công");
         </script>
-    @endif
+    <?php endif; ?>
 
-    @if (Session::has('loi'))
+    <?php if(Session::has('loi')): ?>
         <script>
             toastr.options = {
                 "showMethod": "slideDown",
@@ -311,30 +312,31 @@
                 "progressBar": true,
                 "positionClass": "toast-top-center ",
             }
-            toastr.error("{{ session('loi') }}", "Erro");
+            toastr.error("<?php echo e(session('loi')); ?>", "Erro");
         </script>
-    @endif
+    <?php endif; ?>
 
-    @if (Session::has('info'))
+    <?php if(Session::has('info')): ?>
         <script>
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true
             }
-            toastr.info("{{ session('info') }}");
+            toastr.info("<?php echo e(session('info')); ?>");
         </script>
-    @endif
+    <?php endif; ?>
 
-    @if (Session::has('warning'))
+    <?php if(Session::has('warning')): ?>
         <script>
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true
             }
-            toastr.warning("{{ session('warning') }}");
+            toastr.warning("<?php echo e(session('warning')); ?>");
         </script>
-    @endif
-    {{-- ///hết toarst --}}
+    <?php endif; ?>
+    
 </body>
 
 </html>
+<?php /**PATH C:\laragon\www\webdoctruyen3\resources\views/layout/admin_layout.blade.php ENDPATH**/ ?>

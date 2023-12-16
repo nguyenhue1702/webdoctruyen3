@@ -1,5 +1,4 @@
-@extends('layout/admin_layout')
-@section('baiviet_user')
+<?php $__env->startSection('baiviet_user'); ?>
 <style>
     .expandable-cell .content {
  max-height: 160px;
@@ -13,8 +12,7 @@
  display: block;
  margin-top: 10px;
  cursor: pointer;
- border: 0px;
- background-color: inherit;
+ border: 0px
 }
 </style>
 <div class="row px-5 py-3">
@@ -42,35 +40,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($list as $item)
+                    <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->title }}</td>
+                        <td><?php echo e($item->id); ?></td>
+                        <td><?php echo e($item->title); ?></td>
                         <td class="expandable-cell">
                             <div class="content">
-                                <p>{!! $item->content !!}</p>
+                                <p><?php echo $item->content; ?></p>
                             </div>
                             <button class="toggle-button" onclick="toggleContent(this)">Xem thêm</button>
                         </td>
                         <td>
-                            <input type="checkbox" class="toggle-baivietuser" data-id="{{ $item->id }}" data-toggle="toggle" data-style="slow" data-on="Success" data-off="Waiting" {{ $item->apply == true ? 'checked' : '' }}>
+                            <input type="checkbox" class="toggle-baivietuser" data-id="<?php echo e($item->id); ?>" data-toggle="toggle" data-style="slow" data-on="Success" data-off="Waiting" <?php echo e($item->apply == true ? 'checked' : ''); ?>>
 
                         </td>
 
-                        <td>{{ $item->user_baiviet->name }}</td>
+                        <td><?php echo e($item->user_baiviet->name); ?></td>
 
                         <td>
                             <div class="thaotac">
-                                {{-- <button><a href="{{ route('edit_bv_user', $item->id) }}" class="btn-sua"><i class="fa-solid fa-wrench"></i></a></button>&nbsp;&nbsp; --}}
+                                
 
-                                <form action="{{ route('delete_bv_user', $item->id) }}" method="post" class="dele">
-                                    @csrf
-                                    @method('DELETE')
+                                <form action="<?php echo e(route('delete_bv_user', $item->id)); ?>" method="post" class="dele">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
                                     <button onclick="return confirm('Bạn Có Chắc Muốn Xoá Mục Này không ?')" type="submit"><i class="fa-solid fa-trash-can"></i></button>
                                 </form>
                         </td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
 
@@ -92,5 +90,7 @@
       }
     }
     </script>
-<script src="{{ asset('js/slug.min.js') }}"></script>
-@endsection
+<script src="<?php echo e(asset('js/slug.min.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout/admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\webdoctruyen3\resources\views/Admin/baiviet_user.blade.php ENDPATH**/ ?>

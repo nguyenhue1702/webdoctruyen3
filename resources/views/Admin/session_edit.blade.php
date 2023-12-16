@@ -5,16 +5,16 @@
 
     <div class="col-6 style-input">
             <div class="mb-3 phanloai">
-                
-                    <h3>Edit Session</h3>
-                
+
+                    <h3>Chỉnh Sửa Chương</h3>
+
             </div>
         <form action="{{ route('update_session',$sessions->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3 ">
-                <label for="">Session Number:</label>
-                <input type="text" name="session" placeholder=" Enter Session Number" class="form-control" value="{{ $sessions->session }}"
+                <label for="">Chương số:</label>
+                <input type="text" name="session" placeholder=" Nhập chương số" class="form-control" value="{{ $sessions->session }}"
                    >
                    @error('session')
                    <p class="validation-thongbao">{{ $message }}</p>
@@ -22,20 +22,20 @@
             </div>
             <div class="mb-3">
                 <label for="">Title session</label>
-                <input type="text" class="form-control" name="title_session"  placeholder="Title"  id="slug" onkeyup="ChangeToSlug()" value="{{ $sessions->title_session }}">
+                <input type="text" class="form-control" name="title_session"  placeholder="Nhập tên chương"  id="slug" onkeyup="ChangeToSlug()" value="{{ $sessions->title_session }}">
                 @error('title_session')
                 <p class="validation-thongbao">{{ $message }}</p>
             @enderror
             </div>
             <div class="mb-3 ">
                 <label for="">Slug</label>
-                <input spellcheck="false" type="text" name="slug_session" class="form-control" placeholder="Slug"
+                <input spellcheck="false" type="text" name="slug_session" class="form-control" placeholder="Nhập Slug"
                     id="convert_slug" value="{{ $sessions->slug_session }}" >
                     @error('slug_session')
                     <p class="validation-thongbao">{{ $message }}</p>
                 @enderror
             </div>
-            
+
             <div class="mb-3">
                 <label for="">Thuộc Truyện</label>
                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="id_product">
@@ -72,7 +72,7 @@
             @enderror
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn btn-success">Apply</button>
+                <button type="submit" class="btn btn-success">Xác Nhận</button>
             </div>
         </form>
     </div>

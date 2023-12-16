@@ -5,35 +5,35 @@
 
     <div class="col-6 style-input">
             <div class="mb-3 phanloai">
-                
-                    <h3>Add Session</h3>
-                
+
+                    <h3>Thêm Chương</h3>
+
             </div>
         <form action="{{ route('add_session') }}" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="mb-3 ">
-                <label for="">Session Number:</label>
-                <input type="text" name="session" value="{{ old('session') }}" placeholder=" Enter Session Number" class="form-control" 
+                <label for="">Chương Số:</label>
+                <input type="text" name="session" value="{{ old('session') }}" placeholder="Nhập chương số" class="form-control"
                    >
                    @error('session')
                     <p class="validation-thongbao">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" name="title_session"  placeholder="Title"  id="slug" onkeyup="ChangeToSlug()">
+                <input type="text" class="form-control" name="title_session"  placeholder="Nhập tên chương"  id="slug" onkeyup="ChangeToSlug()">
             </div>
             @error('title_session')
             <p class="validation-thongbao">{{ $message }}</p>
         @enderror
             <div class="mb-3 ">
-                <input spellcheck="false" type="text" name="slug_session" class="form-control" placeholder="Slug"
+                <input spellcheck="false" type="text" name="slug_session" class="form-control" placeholder="Nhập Slug"
                     id="convert_slug" >
                     @error('slug_session')
                     <p class="validation-thongbao">{{ $message }}</p>
                 @enderror
-                    
+
             </div>
-            
+
             <div class="mb-3">
                 <label for="">Thuộc Truyện</label>
                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="id_product">
@@ -66,7 +66,7 @@
             @enderror
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn btn-success">Apply</button>
+                <button type="submit" class="btn btn-success">Xác Nhận</button>
             </div>
         </form>
     </div>

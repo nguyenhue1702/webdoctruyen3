@@ -6,7 +6,7 @@
     <div class="col-6 style-input">
         <div class="mb-3 phanloai">
 
-            <h3>Edit Thể Loại</h3>
+            <h3>Chỉnh Sửa Thể Loại</h3>
 
         </div>
         <form action="{{ route('updatetl', $theloai->id) }}" method="POST">
@@ -35,7 +35,7 @@
                 <p class="validation-thongbao">{{ $message }}</p>
             @enderror
             <div class="mb-3">
-                <button type="submit" class="btn btn-success">Update</button>
+                <button type="submit" class="btn btn-success">Xác Nhận</button>
             </div>
         </form>
     </div>

@@ -1,10 +1,9 @@
-@extends('layout/admin_layout')
-@section('session_list')
+<?php $__env->startSection('session_list'); ?>
 
     <div class="row px-5 py-3">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('Home') }}"><i
+                <li class="breadcrumb-item"><a href="<?php echo e(route('Home')); ?>"><i
                             class="bi bi-house-door-fill"></i>&nbsp;Admin</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Danh Sách Chương</li>
             </ol>
@@ -16,7 +15,7 @@
                <h3>Danh Sách Chương</h3>
            </div>
            <div>
-            <a href="{{ route('create_session') }}" style="display: flex;"><button type="button" class="btn btn-primary">Thêm Mới</button></a>
+            <a href="<?php echo e(route('create_session')); ?>" style="display: flex;"><button type="button" class="btn btn-primary">Thêm Mới</button></a>
            </div>
            </div>
         </div>
@@ -38,38 +37,40 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($chapter as $item)
+                    <?php $__currentLoopData = $chapter; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->Product->name_product }}</td>
-                    <td><img src="/uploads/img_truyen/{{ $item->Product->img_product }}" alt="" srcset="" width="70px" height="85px"></td>
-                    <td>Tập {{ $item->session }}</td>
-                    <td>{{ $item->title_session}}</td>
-                    <td>{{ $item->slug_session}}</td>
-                    <td><textarea name="" id="" cols="20" rows="3" disabled>{{$item->tomtat_session}}</textarea></td>
-                    <td><textarea name="" id="" cols="20" rows="3" disabled>{{$item->content_session}}</textarea></td>
+                    <td><?php echo e($item->id); ?></td>
+                    <td><?php echo e($item->Product->name_product); ?></td>
+                    <td><img src="/uploads/img_truyen/<?php echo e($item->Product->img_product); ?>" alt="" srcset="" width="70px" height="85px"></td>
+                    <td>Tập <?php echo e($item->session); ?></td>
+                    <td><?php echo e($item->title_session); ?></td>
+                    <td><?php echo e($item->slug_session); ?></td>
+                    <td><textarea name="" id="" cols="20" rows="3" disabled><?php echo e($item->tomtat_session); ?></textarea></td>
+                    <td><textarea name="" id="" cols="20" rows="3" disabled><?php echo e($item->content_session); ?></textarea></td>
                     <td >
-                        @if ('0' == $item->kichhoat)
+                        <?php if('0' == $item->kichhoat): ?>
                         <p style="color: rgb(3, 180, 3)">ON</p>
-                    @else
+                    <?php else: ?>
                         <p style="color: red">OFF</p>
-                    @endif
+                    <?php endif; ?>
                     </td>
                     <td>
                         <div class="thaotac">
-                            <button><a href="{{ route('edit_session', $item->id) }}" class="btn-sua"><i
+                            <button><a href="<?php echo e(route('edit_session', $item->id)); ?>" class="btn-sua"><i
                                         class="fa-solid fa-wrench"></i></a></button>&nbsp;&nbsp;
-                            <form action="{{ route('delete_session', $item->id) }}" method="post"
+                            <form action="<?php echo e(route('delete_session', $item->id)); ?>" method="post"
                                 class="dele">
-                                @csrf
-                                @method('DELETE')
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
                                 <button onclick="return confirm('Bạn Có Chắc Muốn Xoá Mục Này không ?')"
                                     type="submit"><i class="fa-solid fa-trash-can"></i></button>
                             </form>
                     </td>
                   </tr>
-                  @endforeach
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
               </table>
             </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout/admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\webdoctruyen3\resources\views/Admin/session_list.blade.php ENDPATH**/ ?>

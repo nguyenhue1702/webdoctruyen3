@@ -18,21 +18,21 @@
                 @endif
                 <div class="mb-3 ">
                     <input type="text" name="theloai" value="{{ old('name_theloai') }}"class="form-control"
-                        placeholder="Enter Name" id="slug" onkeyup="ChangeToSlug()">
+                        placeholder="Nhập thể loại" id="slug" onkeyup="ChangeToSlug()">
                 </div>
                 @error('name_theloai')
                     <p class="validation-thongbao">{{ $message }}</p>
                 @enderror
 
                 <div class="mb-3 ">
-                    <input spellcheck="false" type="text" name="slugtl" class="form-control" placeholder="Enter Slug"
+                    <input spellcheck="false" type="text" name="slugtl" class="form-control" placeholder="Nhập Slug"
                         id="convert_slug" value="{{ old('slugtl') }}">
                 </div>
                 @error('slugtl')
                     <p class="validation-thongbao">{{ $message }}</p>
                 @enderror
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-success">Apply</button>
+                    <button type="submit" class="btn btn-success">Xác Nhận</button>
                 </div>
             </form>
             <hr class="hr">
@@ -46,9 +46,9 @@
                     <thead>
                         <tr>
                             <th scope="col">STT</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">Tên thể loại</th>
                             <th scope="col">Slug</th>
-                            <th scope="col">Setting</th>
+                            <th scope="col">Hành động</th>
 
                         </tr>
                     </thead>
