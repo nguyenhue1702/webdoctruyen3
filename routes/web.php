@@ -60,9 +60,6 @@ Route::post('/Admin/add_product',[ProductController::class,'add_product'])->name
 Route::delete('/Admin/delete_truyen/{id}',[ProductController::class,'delete_truyen'])->name('delete_truyen');
 Route::get('Admin/edit_product/{id}',[ProductController::class,'edit_product'])->name('edit_product');
 Route::put('/Admin/update_product/{id}',[ProductController::class,'update_product'])->name('update_product');
-
-
-
 //tác giả
 Route::get('/Admin/author',[AdminController::class,'ListAuthor'])->name('ListAuthor');
 Route::get('/Admin/createauthor',[AdminController::class,'createauthor'])->name('createauthor');
@@ -70,7 +67,6 @@ Route::post('/Admin/newauthor',[AdminController::class,'newauthor'])->name('newa
 Route::get('/Admin/edit_author/{id}',[AdminController::class,'edit_author'])->name('edit_author');
 Route::put('/Admin/update_author/{id}',[AdminController::class,'updateauthor'])->name('updateauthor');
 Route::delete('/Admin/delete_author/{id}',[AdminController::class,'delete_author'])->name('delete_author');
-
 //banner
 Route::get('/Admin/Banner',[AdminController::class,'ListBanner'])->name('ListBanner');
 Route::get('/Admin/create_banner',[AdminController::class,'create_banner'])->name('create_banner');
@@ -79,19 +75,13 @@ Route::delete('/Admin/deletebanner/{id}',[AdminController::class,'delete_banner'
 Route::get('/Admin/edit_banner/{id}',[AdminController::class,'edit_banner'])->name('edit_banner');
 Route::put('/Admin/update_banner/{id}',[AdminController::class,'updatebanner'])->name('update_banner');
 //session
-
 Route::get('/Admin/Session',[SessionController::class,'form_session'])->name('session_list');
 Route::get('/Admin/create_session',[SessionController::class,'create_session'])->name('create_session');
 Route::post('/Admin/NewSession',[SessionController::class,'add_session'])->name('add_session');
 Route::delete('/Admin/delete_session/{id}',[SessionController::class,'delete_session'])->name('delete_session');
 Route::get('/Admin/edit_session/{id}',[SessionController::class,'edit_session'])->name('edit_session');
 Route::put('/Admin/update_session/{id}',[SessionController::class,'update_session'])->name('update_session');
-
-
-
-
 //nhà xuất bản
-
 Route::get('/Admin/Publishing',[AdminController::class,'List_Publishing'])->name('Publishing');
 Route::get('/Admin/create_publishing',[AdminController::class,'create_publishing'])->name('create_publishing');
 Route::post('/Admin/new_publishing',[AdminController::class,'new_publishing'])->name('new_publishing');
@@ -109,18 +99,12 @@ Route::get('/Admin/list_bv_user',[UserController::class,'list_bv_user'])->name('
 Route::delete('/Admin/delete_bv_user/{id}',[UserController::class,'delete_bv_user'])->name('delete_bv_user');
 Route::get('/Admin/edit_bv_user/{id}',[UserController::class,'edit_bv_user'])->name('edit_bv_user');
 Route::put('/Admin/update_bv_user/{id}',[UserController::class,'update_bv_user'])->name('update_bv_user');
-
-
 Route::post('/User/apply_bv',[UserController::class,'new_article'])->name('sb_article');
-
 Route::get('/Website/List_Article',[UserController::class,'ds_article'])->name('ds_article');
 //baiviet website
-
 Route::delete('/ListArticle/dele_bv_user_web/{id}',[WebsiteController::class,'dele_bv_user_web'])->name('dele_bv_user_web');
-
 Route::get('/ListArticle/edit_bv_user_web/{id}',[WebsiteController::class,'edit_bv_user_web'])->name('edit_bv_user_web');
 Route::put('/User/update_bv_user_web/{id}',[WebsiteController::class,'update_bv_user_web'])->name('update_bv_user_web');
-
 Route::post('/User/insert_comment',[CommentController::class,'insert_comment'])->name('insert_comment');
 
 Route::post('/User/add_favourite',[FavouriteController::class,'add_favourite'])->name('add_favourite');
@@ -148,7 +132,7 @@ Route::get('/view/{id}/{slug_product}/{slug_session}',[WebsiteController::class,
 //timkiem
 Route::get('/tim-kiem',[WebsiteController::class,'timkiem'])->name('timkiem');
 //timkiem bang ajax
-Route::post('/timkiem-ajax',[WebsiteController::class, 'timkiem_ajax']);
+Route::post('/timkiem-ajax',[WebsiteController::class, 'timkiem_ajax'])->name('timkiem_ajax');
 //user
 Route::get('/DangKi',[UserController::class,'TrangDangKi'])->name('TrangDangKi');
 Route::post('/DangKiTK',[UserController::class, 'DangKiTK'])->name('DangKi');

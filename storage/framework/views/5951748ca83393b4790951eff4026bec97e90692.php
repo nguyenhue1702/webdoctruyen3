@@ -6,29 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Truyện</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
     <!-- link css -->
     <link rel="icon" href="/img/nguoi.png"type="image/icon type">
-    <link rel="stylesheet" href="{{ asset('/css/web.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/reponweb.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/bootrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/slide.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/toast.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/web.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/reponweb.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/bootrap.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/slide.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/footer.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/toast.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/fontawesome.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/fontawesome.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/all.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/owl.carousel.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/owl.theme.default.min.css')); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- slickslide -->
-    <link rel="stylesheet" href="{{ asset('/css/slickslide.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/slickslide.css')); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
         integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- hết slick -->
-    {{-- --wow anime-- --}}
-    <link rel="stylesheet" href="{{ asset('/css/animate.css') }}">
+    
+    <link rel="stylesheet" href="<?php echo e(asset('/css/animate.css')); ?>">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
@@ -85,31 +85,32 @@
 
                 <div class="logo">
 
-                    <a href="{{ route('Home') }}"><img src="/img/logo.gif" alt="" srcset="" width="110px"
+                    <a href="<?php echo e(route('Home')); ?>"><img src="/img/logo.gif" alt="" srcset="" width="110px"
                             height="110px"></a>
                 </div>
                 <div class="acount ">
-                    @if (Session::has('name'))
+                    <?php if(Session::has('name')): ?>
                         <div class="dropdown user-web" style="width: 130px">
                             <a class=" dropdown-toggle name-user" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ Session::get('name') }}
+                                <?php echo e(Session::get('name')); ?>
+
 
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('info') }}"><i
+                                <li><a class="dropdown-item" href="<?php echo e(route('info')); ?>"><i
                                             class="bi bi-person-fill"></i> &nbsp;&nbsp; Info</a></li>
-                                <li><a class="dropdown-item" href="{{ route('ds_article') }}"><i
+                                <li><a class="dropdown-item" href="<?php echo e(route('ds_article')); ?>"><i
                                             class="bi bi-pencil-fill"></i> &nbsp;&nbsp;Article</a></li>
-                                <li><a class="dropdown-item" href="{{ route('Logout') }}"><i
+                                <li><a class="dropdown-item" href="<?php echo e(route('Logout')); ?>"><i
                                             class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;Logout</a></li>
                             </ul>
                         </div>
-                    @else
-                        <button><a href="{{ route('FormLoginAdmin') }}">Login</a></button>&nbsp;&nbsp;
-                        <button><a href="{{ route('TrangDangKi') }}">Register</a></button>
-                    @endif
+                    <?php else: ?>
+                        <button><a href="<?php echo e(route('FormLoginAdmin')); ?>">Login</a></button>&nbsp;&nbsp;
+                        <button><a href="<?php echo e(route('TrangDangKi')); ?>">Register</a></button>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -126,17 +127,17 @@
                         <div class="collapse navbar-collapse " id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                                 <li class="nav-item py-2">
-                                    <a class="nav-link" href="{{ route('all_baiviet_user') }}" role="button"
+                                    <a class="nav-link" href="<?php echo e(route('all_baiviet_user')); ?>" role="button"
                                         aria-expanded="false">
                                         Truyện Ngắn
                                     </a>
                                 </li>
                                 <li class="nav-item py-2">
-                                    @if (Session::has('roleUser'))
-                                        <a class="nav-link" href="{{ route('user_article') }}">Đăng Truyện</a>
-                                    @else
-                                        <a class="nav-link" href="{{ route('user_article') }}">Đăng Truyện</a>
-                                    @endif
+                                    <?php if(Session::has('roleUser')): ?>
+                                        <a class="nav-link" href="<?php echo e(route('user_article')); ?>">Đăng Truyện</a>
+                                    <?php else: ?>
+                                        <a class="nav-link" href="<?php echo e(route('user_article')); ?>">Đăng Truyện</a>
+                                    <?php endif; ?>
                                 </li>
 
                                 <li class="nav-item dropdown py-2">
@@ -148,14 +149,14 @@
                                     <ul class="dropdown-menu dropstyle" aria-labelledby="navbarDropdown">
                                         <div class="table-drop row">
 
-                                            @foreach ($tendms as $tendm)
+                                            <?php $__currentLoopData = $tendms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tendm): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <div class="col-3">
                                                     <li><a class="dropdown-item"
-                                                            href="{{ route('xemtheodanhmuc', [$tendm->id, $tendm->slugdm]) }}"><i
-                                                                style="font-size:20px"class="bi bi-tag"></i>{{ $tendm->danhmuc }}</a>
+                                                            href="<?php echo e(route('xemtheodanhmuc', [$tendm->id, $tendm->slugdm])); ?>"><i
+                                                                style="font-size:20px"class="bi bi-tag"></i><?php echo e($tendm->danhmuc); ?></a>
                                                     </li>
                                                 </div>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                         </div>
 
@@ -171,27 +172,27 @@
                                     <ul class="dropdown-menu dropstyle" aria-labelledby="navbarDropdown">
                                         <div class="table-drop row">
 
-                                            @foreach ($theloai as $item)
+                                            <?php $__currentLoopData = $theloai; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <div class="col-3">
                                                     <li><a class="dropdown-item"
-                                                            href="{{ route('xemtheotheloai', [$item->id, $item->slugtl]) }}"><i
-                                                                style="font-size:20px"class="bi bi-tag"></i>{{ $item->theloai }}</a>
+                                                            href="<?php echo e(route('xemtheotheloai', [$item->id, $item->slugtl])); ?>"><i
+                                                                style="font-size:20px"class="bi bi-tag"></i><?php echo e($item->theloai); ?></a>
                                                     </li>
                                                 </div>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                         </div>
 
                                     </ul>
 
                                 </li>
-                                {{-- ---------đăng bài----------- --}}
+                                
 
                             </ul>
-                            {{-- /           ///////tìm kiếm///////// --}}
-                            <form autocomplete="off" class="d-flex" action="{{ route('timkiem') }}" method="GET">
-                                @csrf
-                                <div class="timkiem" data-url="{{ route('timkiem_ajax') }}">
+                            
+                            <form autocomplete="off" class="d-flex" action="<?php echo e(route('timkiem')); ?>" method="GET">
+                                <?php echo csrf_field(); ?>
+                                <div class="timkiem" data-url="<?php echo e(route('timkiem_ajax')); ?>">
                                     <input class="form-control me-2" type="search" id="keywords" name="key"
                                         placeholder="Search Comics" aria-label="Search " style="font-size:16px">
                                     <div id="search_ajax"></div>
@@ -205,27 +206,27 @@
         </div>
     </div>
     <section>
-        {{-- ---banner --}}
-        @yield('banner')
-        {{-- ---endbanner --}}
+        
+        <?php echo $__env->yieldContent('banner'); ?>
+        
     </section>
     <div class="container tttt">
         <div class="content">
             <section>
                 <div class="row content-new">
-                    @yield('home')
-                    @yield('allbaiviet')
-                    @yield('trangtruyen')
-                    @yield('formdanhmuc')
-                    @yield('sessionview')
-                    @yield('doctruyen')
-                    @yield('timkiem')
-                    @yield('formtheloai')
-                    @yield('user_article')
-                    @yield('list_article')
-                    @yield('all_baiviet_user')
-                    @yield('view_baiviet_user')
-                    @yield('edit_bv_user_web')
+                    <?php echo $__env->yieldContent('home'); ?>
+                    <?php echo $__env->yieldContent('allbaiviet'); ?>
+                    <?php echo $__env->yieldContent('trangtruyen'); ?>
+                    <?php echo $__env->yieldContent('formdanhmuc'); ?>
+                    <?php echo $__env->yieldContent('sessionview'); ?>
+                    <?php echo $__env->yieldContent('doctruyen'); ?>
+                    <?php echo $__env->yieldContent('timkiem'); ?>
+                    <?php echo $__env->yieldContent('formtheloai'); ?>
+                    <?php echo $__env->yieldContent('user_article'); ?>
+                    <?php echo $__env->yieldContent('list_article'); ?>
+                    <?php echo $__env->yieldContent('all_baiviet_user'); ?>
+                    <?php echo $__env->yieldContent('view_baiviet_user'); ?>
+                    <?php echo $__env->yieldContent('edit_bv_user_web'); ?>
             </section>
         </div>
         <!-- footer -->
@@ -279,7 +280,7 @@
 
     </footer>
 
-    {{-- slick slide --}}
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
         integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A=="
@@ -287,14 +288,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"
         integrity="sha512-eP8DK17a+MOcKHXC5Yrqzd8WI5WKh6F1TIk5QZ/8Lbv+8ssblcz7oGC8ZmQ/ZSAPa7ZmsCU4e/hcovqR8jfJqA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('js/slickslide.min.js') }}"></script>
-    {{-- //// --}}
-    {{-- darkmode --}}
+    <script src="<?php echo e(asset('js/slickslide.min.js')); ?>"></script>
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-    {{-- wow anime --}}
-    <script src="{{ asset('js/wowanimate.min.js') }}"></script>
+    
+    <script src="<?php echo e(asset('js/wowanimate.min.js')); ?>"></script>
     <script>
         new WOW().init();
     </script>
@@ -304,15 +305,15 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://kit.fontawesome.com/dc8bdf0c28.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/slide.min.js') }}"></script>
-    <script src="{{ asset('js/slickslide.min.js') }}"></script>
+    <script src="<?php echo e(asset('js/slide.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/slickslide.min.js')); ?>"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="{{ asset('js/owl.carousel.js') }}"></script>
-    <script src="{{ asset('js/slide_owl.min.js') }}"></script>
-    <script src="{{ asset('js/load_more.min.js') }}"></script>
-    <script src="{{ asset('js/select_option.min.js') }}"></script>
-    <script src="{{ asset('js/scroll_dautrang.min.js') }}"></script>
-    <script src="{{ asset('js/darkmode.min.js') }}"></script>
+    <script src="<?php echo e(asset('js/owl.carousel.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/slide_owl.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/load_more.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/select_option.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/scroll_dautrang.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/darkmode.min.js')); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
@@ -334,7 +335,7 @@
 
     <!-- Your SDK code -->
 
-    {{-- ///script tìm kiếm bằng ajax --}}
+    
     <script>
         $('#keywords').keyup(function() {
             var keywords = $(this).val();
@@ -359,8 +360,8 @@
             }
         });
     </script>
-    {{-- ---------------- --}}
-    @if (Session::has('ok'))
+    
+    <?php if(Session::has('ok')): ?>
         <script>
             toastr.options = {
                 "showMethod": "slideDown",
@@ -370,11 +371,11 @@
                 "progressBar": true,
                 "positionClass": "toast-top-center ",
             }
-            toastr.success("{{ session('ok') }}", "Thành Công");
+            toastr.success("<?php echo e(session('ok')); ?>", "Thành Công");
         </script>
-    @endif
+    <?php endif; ?>
 
-    @if (Session::has('loi'))
+    <?php if(Session::has('loi')): ?>
         <script>
             toastr.options = {
                 "showMethod": "slideDown",
@@ -384,29 +385,30 @@
                 "progressBar": true,
                 "positionClass": "toast-top-center ",
             }
-            toastr.error("{{ session('loi') }}", "Erro");
+            toastr.error("<?php echo e(session('loi')); ?>", "Erro");
         </script>
-    @endif
+    <?php endif; ?>
 
-    @if (Session::has('info'))
+    <?php if(Session::has('info')): ?>
         <script>
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true
             }
-            toastr.info("{{ session('info') }}");
+            toastr.info("<?php echo e(session('info')); ?>");
         </script>
-    @endif
+    <?php endif; ?>
 
-    @if (Session::has('warning'))
+    <?php if(Session::has('warning')): ?>
         <script>
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true
             }
-            toastr.warning("{{ session('warning') }}");
+            toastr.warning("<?php echo e(session('warning')); ?>");
         </script>
-    @endif
+    <?php endif; ?>
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\webtruyen3\resources\views/layout/website_layout.blade.php ENDPATH**/ ?>

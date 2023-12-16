@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\LoginRequest;
 use App\Models\RegisterModel;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class UserController extends Controller
 
         return redirect()->route('FormLoginAdmin')->with('ok', 'Đăng Kí Thành Công');
     }
-    public function LoginAdmin(Request $request)
+    public function LoginAdmin(LoginRequest $request)
     {
 
         $email = $request->email;
@@ -55,11 +56,15 @@ class UserController extends Controller
                 return redirect()->route('Home')->with('ok', 'Đăng nhập Thành công');
                 //tài khoản bình thường
             } else {
-
                 return redirect()->route('HomeAdmin')->with('ok', 'Đăng Nhập Thành Công');
             }
         } else {
-
+            if (empty($request->email) && empty($request->password)) {
+                return redirect()->route('FormLoginAdmin')->with('loi', 'Yêu cầu nhập email và mật khẩu !');
+            }
+            if (isset($request->email) && empty($request->password)) {
+                return redirect()->route('FormLoginAdmin')->with('loi', 'Yêu cầu nhập mật khẩu !');
+            }
             return redirect()->route('FormLoginAdmin')->with('loi', 'Sai Tài Khoản Hoặc Mật Khẩu !');
         }
     }
@@ -110,11 +115,13 @@ class UserController extends Controller
     }
     public function new_article(Request $request)
     {
+
         $new = new articleuser();
+        $content = !empty($request->content) ? $request->content : "";
         $new->title = $request->tilte;
         $new->slug = $request->slug;
         $new->user_id = $request->user_id;
-        $new->content = $request->content;
+        $new->content = $content;
         $new->save();
         return redirect()->route('Home')->with('ok', "Đăng bài thành công đang chờ xét duyệt");
     }
@@ -132,9 +139,16 @@ class UserController extends Controller
     public function list_bv_user()
     {
         $list = articleuser::with('User_baiviet')->orderBy('id', 'DESC')->get();
-
+        $count = 0;
+        foreach ($list as $key => $value) {
+            if ($value->apply === 0) {
+                $count++;
+            }
+        }
+        Session::put('countStatus', $count);
         return view('Admin/baiviet_user')->with('list', $list);
     }
+
     public function delete_bv_user($id)
     {
         $bv_user = articleuser::find($id);
@@ -166,7 +180,5 @@ class UserController extends Controller
         $status->apply = $request->apply;
         $status->save();
         return response()->json(['success' => 'Status Changed Successfully']);
-    
     }
-
 }

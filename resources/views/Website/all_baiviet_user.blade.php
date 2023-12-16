@@ -22,7 +22,7 @@
         <a href="{{route('view_truyen_user',[$item->id,$item->slug])}}" class="list-group-item list-group-item-action tieu-de-truyen">
             <div class="d-flex w-100 justify-content-between de-truyen">
                 <h4>{{$item->title}}</h4>
-                <small>{{$item->created_at}}</small>
+                <small >{{$item->created_at}}</small>
                 <small class="name-docgia">{{$item->User_baiviet->name}}</small>
               
             </div>        

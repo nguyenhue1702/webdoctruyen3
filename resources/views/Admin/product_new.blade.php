@@ -65,10 +65,10 @@
                 </div>
                 <div class="mb-3">
                     <label for=""><b>
-                        Thể Loại :<b></label>
+                        Thông tin thêm :<b></label>
                 </div>
                 <div class="mb-3">
-                    <label for="">Tác giả</label>
+                    <label for="">Tác giả :</label>
                     <select name="id_author" class="form-select form-select-sm" aria-label=".form-select-sm example">
                         @foreach ($tacgias as $tacgia)
                             <option value="{{ $tacgia->id }}">{{ $tacgia->name_author }}</option>

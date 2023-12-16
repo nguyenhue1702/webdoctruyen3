@@ -101,7 +101,7 @@
                         <img src="/uploads/img_truyen/77.jpg" alt="" width="50px" height="50px">
                     </div>
                     <div>
-                        Dương Anh Tuấn
+                        Nguyễn Thị Huệ
                     </div>
                     <div>
                         25/01/2022

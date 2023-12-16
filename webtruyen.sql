@@ -555,7 +555,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'Dương Anh Tuấn', 'Admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2, '2022-07-30 00:31:00', '2022-07-30 00:31:00'),
+(1, 'Nguyễn Thị Huệ', 'Admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2, '2022-07-30 00:31:00', '2022-07-30 00:31:00'),
 (2, 'Dương Văn Chiến', 'user@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, '2022-07-30 00:52:55', '2022-07-30 00:52:55'),
 (3, 'Dương Tuấn Anh', 'user3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2022-07-30 01:11:45', '2022-07-30 01:11:45'),
 (4, 'Vũ Đức Trung', 'user4@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2022-08-03 06:25:15', '2022-08-03 06:25:15'),

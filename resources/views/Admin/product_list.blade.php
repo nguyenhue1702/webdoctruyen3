@@ -29,7 +29,7 @@
                     <th scope="col">Img</th>
                     <th scope="col">Slug</th>
                     <th scope="col">HOT</th>
-                    <th scope="col">Content</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Author</th>
                     <th scope="col">Status</th>
                     <th scope="col">Show</th>

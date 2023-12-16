@@ -117,7 +117,7 @@ class ProductController extends Controller
         foreach ($request->theloai  as $the) {
             $truyen->theloai_id = $the[0];
         }
-        //@hết 
+        
 
         $truyen->id_author = $request->id_author;
         $get_img = $request->file('img_product');

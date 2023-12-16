@@ -25,9 +25,9 @@ class UserRequest extends FormRequest
     {
         return [
             'email' => 'required|email|unique:App\Models\User,email',
-            'name' => 'required',
-            'password'=>'required|confirmed|min:6',
-            'password_confirmation' => 'required'
+            'name' => 'required|max:50',
+            'password'=>'required|min:6',
+            'password_confirmation' => 'required|confirmed'
             
         ];
     }
@@ -36,6 +36,7 @@ class UserRequest extends FormRequest
         return['required'=> ':attribute bắt buộc phải nhập(*)',
                 'email'=> 'phải có định dạng :attribute  vd : 123@gmail.com (*)',
                 'min'=>'Số kí tự phải lớn hơn :min(*)',
+                'max'=>'Số kí tự phải bé hơn :max(*)',
                 'unique'=> ':attribute Đã Tồn Tại !',
                 'confirmed'=>':attribute Nhập Lại Không Chính Xác (*)'];
     }

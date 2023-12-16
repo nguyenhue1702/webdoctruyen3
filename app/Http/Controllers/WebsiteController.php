@@ -156,11 +156,11 @@ class WebsiteController extends Controller
         $tendms = dmtruyen::All();
         $theloai = theloai::orderBy('id', 'DESC')->get();
         $key = $request->key;
-        $truyen = Product::with('danhmuc')->where('name_product', 'LIKE', '%' . $key . '%')->get();
+        $truyenhay = Product::with('danhmuc')->where('name_product', 'LIKE', '%' . $key . '%')->get();
         
 
 
-        return view('Website/timkiem')->with(compact('truyen', 'key', 'tendms','theloai'));
+        return view('Website/timkiem')->with(compact('truyenhay', 'key', 'tendms','theloai'));
     }
     public function timkiem_ajax(Request $request)
     {
