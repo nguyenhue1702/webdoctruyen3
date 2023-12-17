@@ -96,7 +96,7 @@
                             <span class="text nav-text">Home</span>
                         </a>
                     </li>
-
+                    @if (Session::get('roleUser') >= 1)
                     <h3>Content</h3>
                     <li class="nav-link-edit">
                         <a href="{{ route('ListArticle') }}">
@@ -104,6 +104,7 @@
                             <span class="text nav-text">Article</span>
                         </a>
                     </li>
+                    @endif
                     @if (Session::get('roleUser') >= 1)
                     <li class="nav-link-edit">
                         <a href="{{ route('ListBanner') }}">
@@ -112,7 +113,7 @@
                         </a>
                     </li>
                     @endif
-                    @if (Session::get('roleUser') > 1)
+
                         <h3>Admin </h3>
 
                         <li class="nav-link-edit">
@@ -121,6 +122,7 @@
                                 <span class="text nav-text">Quản Lý Truyện</span>
                             </a>
                         </li>
+                        @if (Session::get('roleUser') > 1)
                         <li class="nav-link-edit">
                             <a href="{{ route('comic_category') }}">
                                 <i class="fa-solid fa-bars-staggered icon"></i>

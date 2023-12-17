@@ -52,9 +52,13 @@
                             </div>
                             <button class="toggle-button" onclick="toggleContent(this)">Xem thêm</button>
                         </td>
-                        <td>
-                            <input type="checkbox" class="toggle-baivietuser" data-id="{{ $item->id }}" data-toggle="toggle" data-style="slow" data-on="Success" data-off="Waiting" {{ $item->apply == true ? 'checked' : '' }}>
 
+                        <td>
+                            @if (Session::get('roleUser') == 1)
+                            <input disabled type="checkbox" class="toggle-baivietuser" data-id="{{ $item->id }}" data-toggle="toggle" data-style="slow" data-on="Success" data-off="Waiting" {{ $item->apply == true ? 'checked' : '' }}>
+                            @elseif (Session::get('roleUser') == 2)
+                            <input type="checkbox" class="toggle-baivietuser" data-id="{{ $item->id }}" data-toggle="toggle" data-style="slow" data-on="Success" data-off="Waiting" {{ $item->apply == true ? 'checked' : '' }}>
+                            @endif
                         </td>
 
                         <td>{{ $item->user_baiviet->name }}</td>

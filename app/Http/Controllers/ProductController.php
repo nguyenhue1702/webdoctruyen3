@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Models\Author;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Session;
 use App\Models\baiviet;
 
 class ProductController extends Controller
@@ -19,7 +20,12 @@ class ProductController extends Controller
     //@ các function xử lí Truyện ADMIN
     public function listproduct()
     {
-        $list_truyen = Product::with('danhmuc')->orderBy('id', 'DESC')->get();
+        $user = Session::get('id');
+        if (Session::get('role') > 1) {
+            $list_truyen = Product::with('danhmuc')->orderBy('id', 'DESC')->get();
+        } else {
+            $list_truyen = Product::with('danhmuc')->orderBy('id', 'DESC')->where('id_author', $user)->get();
+        }
 
         return view('Admin/product_list')->with('list_truyen', $list_truyen);
     }
@@ -117,7 +123,7 @@ class ProductController extends Controller
         foreach ($request->theloai  as $the) {
             $truyen->theloai_id = $the[0];
         }
-        
+
 
         $truyen->id_author = $request->id_author;
         $get_img = $request->file('img_product');
@@ -138,30 +144,30 @@ class ProductController extends Controller
     }
     public function ChangeStatusProduct(Request $request)
     {
-      
+
         $status = Product::find($request->truyen_id);
         $status->kichhoat = $request->kichhoat;
         $status->save();
         return response()->json(['success' => 'Status Changed Successfully']);
-    
+
     }
     public function ChangeTinhtrangProduct(Request $request)
     {
-      
+
         $tinhtrang = Product::find($request->truyen_id);
         $tinhtrang->tinhtrang = $request->tinhtrang;
         $tinhtrang->save();
         return response()->json(['success' => 'Status Changed Successfully']);
-    
+
     }
-    public function    ChangeHotProduct(Request $request)
+    public function ChangeHotProduct(Request $request)
     {
-      
+
         $hot = Product::find($request->truyen_id);
         $hot->hot = $request->hot;
         $hot->save();
         return response()->json(['success' => 'Status Changed Successfully']);
-    
+
     }
- 
+
 }

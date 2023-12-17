@@ -133,9 +133,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item py-2">
-                                    <?php if(Session::has('roleUser')): ?>
-                                        <a class="nav-link" href="<?php echo e(route('user_article')); ?>">Đăng Truyện</a>
-                                    <?php else: ?>
+                                    <?php if(Session::get('role') >= 1): ?>
                                         <a class="nav-link" href="<?php echo e(route('user_article')); ?>">Đăng Truyện</a>
                                     <?php endif; ?>
                                 </li>

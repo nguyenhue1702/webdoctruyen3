@@ -12,7 +12,8 @@
  display: block;
  margin-top: 10px;
  cursor: pointer;
- border: 0px
+ border: 0px;
+ background-color: inherit;
 }
 </style>
 <div class="row px-5 py-3">
@@ -50,9 +51,13 @@
                             </div>
                             <button class="toggle-button" onclick="toggleContent(this)">Xem thêm</button>
                         </td>
-                        <td>
-                            <input type="checkbox" class="toggle-baivietuser" data-id="<?php echo e($item->id); ?>" data-toggle="toggle" data-style="slow" data-on="Success" data-off="Waiting" <?php echo e($item->apply == true ? 'checked' : ''); ?>>
 
+                        <td>
+                            <?php if(Session::get('roleUser') == 1): ?>
+                            <input disabled type="checkbox" class="toggle-baivietuser" data-id="<?php echo e($item->id); ?>" data-toggle="toggle" data-style="slow" data-on="Success" data-off="Waiting" <?php echo e($item->apply == true ? 'checked' : ''); ?>>
+                            <?php elseif(Session::get('roleUser') == 2): ?>
+                            <input type="checkbox" class="toggle-baivietuser" data-id="<?php echo e($item->id); ?>" data-toggle="toggle" data-style="slow" data-on="Success" data-off="Waiting" <?php echo e($item->apply == true ? 'checked' : ''); ?>>
+                            <?php endif; ?>
                         </td>
 
                         <td><?php echo e($item->user_baiviet->name); ?></td>

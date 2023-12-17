@@ -97,7 +97,7 @@
                             <span class="text nav-text">Home</span>
                         </a>
                     </li>
-
+                    <?php if(Session::get('roleUser') >= 1): ?>
                     <h3>Content</h3>
                     <li class="nav-link-edit">
                         <a href="<?php echo e(route('ListArticle')); ?>">
@@ -105,6 +105,7 @@
                             <span class="text nav-text">Article</span>
                         </a>
                     </li>
+                    <?php endif; ?>
                     <?php if(Session::get('roleUser') >= 1): ?>
                     <li class="nav-link-edit">
                         <a href="<?php echo e(route('ListBanner')); ?>">
@@ -113,7 +114,7 @@
                         </a>
                     </li>
                     <?php endif; ?>
-                    <?php if(Session::get('roleUser') > 1): ?>
+
                         <h3>Admin </h3>
 
                         <li class="nav-link-edit">
@@ -122,6 +123,7 @@
                                 <span class="text nav-text">Quản Lý Truyện</span>
                             </a>
                         </li>
+                        <?php if(Session::get('roleUser') > 1): ?>
                         <li class="nav-link-edit">
                             <a href="<?php echo e(route('comic_category')); ?>">
                                 <i class="fa-solid fa-bars-staggered icon"></i>

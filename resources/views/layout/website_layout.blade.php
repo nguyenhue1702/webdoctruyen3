@@ -132,9 +132,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item py-2">
-                                    @if (Session::has('roleUser'))
-                                        <a class="nav-link" href="{{ route('user_article') }}">Đăng Truyện</a>
-                                    @else
+                                    @if (Session::get('role') >= 1)
                                         <a class="nav-link" href="{{ route('user_article') }}">Đăng Truyện</a>
                                     @endif
                                 </li>

@@ -1,5 +1,20 @@
 <?php $__env->startSection('session_list'); ?>
+<style>
+    .expandable-cell .content {
+ max-height: 160px; /* Đặt chiều cao tối đa để thu gọn */
+ overflow: hidden;
+ transition: max-height 0.3s ease;
+}
 
+/* CSS cho nút "Xem thêm" */
+.toggle-button {
+ display: block;
+ margin-top: 10px;
+ cursor: pointer;
+ border: 0px;
+ background-color: inherit;
+}
+</style>
     <div class="row px-5 py-3">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="">
             <ol class="breadcrumb">
@@ -45,8 +60,20 @@
                     <td>Tập <?php echo e($item->session); ?></td>
                     <td><?php echo e($item->title_session); ?></td>
                     <td><?php echo e($item->slug_session); ?></td>
-                    <td><textarea name="" id="" cols="20" rows="3" disabled><?php echo e($item->tomtat_session); ?></textarea></td>
-                    <td><textarea name="" id="" cols="20" rows="3" disabled><?php echo e($item->content_session); ?></textarea></td>
+
+                    <td class="expandable-cell">
+                        <div class="content">
+                            <p><?php echo $item->tomtat_session; ?></p>
+                        </div>
+                        <button class="toggle-button" onclick="toggleContent(this)">Xem thêm</button>
+                    </td>
+                    <td class="expandable-cell">
+                        <div class="content">
+                            <p><?php echo $item->content_session; ?></p>
+                        </div>
+                        <button class="toggle-button" onclick="toggleContent(this)">Xem thêm</button>
+                    </td>
+
                     <td >
                         <?php if('0' == $item->kichhoat): ?>
                         <p style="color: rgb(3, 180, 3)">ON</p>
@@ -71,6 +98,18 @@
                 </tbody>
               </table>
             </div>
+            <script>
+                function toggleContent(button) {
+                  var content = button.previousElementSibling; // Lấy phần tử content trước button
+                  if (content.style.maxHeight) {
+                    content.style.maxHeight = null; // Mở rộng nội dung
+                    button.textContent = "Xem thêm";
+                  } else {
+                    content.style.maxHeight = content.scrollHeight + "px"; // Thu gọn nội dung
+                    button.textContent = "Thu gọn";
+                  }
+                }
+                </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layout/admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\webdoctruyen3\resources\views/Admin/session_list.blade.php ENDPATH**/ ?>

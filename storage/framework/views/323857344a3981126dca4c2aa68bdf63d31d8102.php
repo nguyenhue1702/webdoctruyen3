@@ -39,7 +39,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
             <div class="mb-3 ">
-                <input spellcheck="false" type="text" name="slug_session" class="form-control" placeholder="Slug"
+                <input spellcheck="false" type="text" name="slug_session" class="form-control" placeholder="Nhập Slug"
                     id="convert_slug" >
                     <?php $__errorArgs = ['slug_session'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -100,7 +100,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn btn-success">Apply</button>
+                <button type="submit" class="btn btn-success">Xác Nhận</button>
             </div>
         </form>
     </div>

@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class session extends Model
+class Chapter extends Model
 {
     use HasFactory;
+    protected $table = 'sessions';
+
     protected $fillable = [
         'session',
         'title_session',

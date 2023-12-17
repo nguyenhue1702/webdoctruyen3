@@ -74,6 +74,7 @@ class UserController extends Controller
         Session::put('role', null);
         session(['isLogin' => false]);
         session(['roleUser' => -1]);
+        session()->flush();
         return redirect()->route('FormLoginAdmin')->with('ok', 'Đăng Xuất Thành Công');
     }
 
@@ -138,7 +139,13 @@ class UserController extends Controller
     //@ xử lý bài viết user
     public function list_bv_user()
     {
-        $list = articleuser::with('User_baiviet')->orderBy('id', 'DESC')->get();
+        $user = Session::get('id');
+        if (session::get('role') == 2) {
+            $list = articleuser::with('User_baiviet')->orderBy('id', 'DESC')->get();
+        } else {
+            $list = articleuser::with('User_baiviet')->orderBy('id', 'DESC')->where('user_id', $user)->get();
+        }
+
         $count = 0;
         foreach ($list as $key => $value) {
             if ($value->apply === 0) {

@@ -12,7 +12,7 @@ use App\Models\Banner;
 use App\Models\Comment;
 use App\Models\favourite;
 use App\Models\Product;
-use App\Models\session;
+use App\Models\Chapter;
 use App\Models\thuocdanh;
 use App\Models\thuocloai;
 use App\Models\theloai;
@@ -41,7 +41,7 @@ class WebsiteController extends Controller
         $truyenhay = DB::table('products')->orderBy('view_product', 'DESC')->where('kichhoat', 0)->paginate(9);
         $show = 'show'; //*gán biến $show = 'show'
         $banners = Banner::all()->where('show_banner', $show); //*lấy trường show_banner với điều kiện show_banner = $show ('show)
-        $session_new = session::with('Product')->orderBy('id', 'DESC')->where('kichhoat', 0)->paginate(14);
+        $session_new = Chapter::with('Product')->orderBy('id', 'DESC')->where('kichhoat', 0)->paginate(14);
         if ($banners) {
             return view('Website/home')->with(compact('tendms', 'banners', 'truyen', 'session_new', 'truyenhot','theloai','listfavourite','truyenhay'));
         }
@@ -65,7 +65,7 @@ class WebsiteController extends Controller
 
         $listfavourite = favourite::with('Favourite_product')->orderBy('id','DESC')->where('user_id', FacadesSession::get('id'))->paginate(10);
         $favourite = favourite::orderBy('id', 'desc')->where('user_id',$layid )->where('product_id', $id)->get();
-        $session = session::orderBy('id', 'ASC')->where('id_product', $id)->paginate(7);
+        $session = Chapter::orderBy('id', 'ASC')->where('id_product', $id)->paginate(7);
         $count =count($favourite);
         $view_truyen = Product::where('id',$id)->first();
         $view_truyen->view_product = $view_truyen->view_product+1;
@@ -75,7 +75,7 @@ class WebsiteController extends Controller
         $tendms = dmtruyen::orderBy('id', 'DESC')->get();
         $cungloai = Product::orderBy('id', 'DESC')->where('kichhoat', 0)->where('danhmuc_id', $truyen->danhmuc_id)->paginate(14);
 
-        $session_dau = session::orderBy('id', 'ASC')->where('id_product', $id)->first();
+        $session_dau = Chapter::orderBy('id', 'ASC')->where('id_product', $id)->first();
 
         $sl_session = count($session); //số lượng chương
         return view('Website/form_trang_truyen')->with(compact('tendms', 'session', 'cungloai', 'truyen', 'sl_session', 'session_dau', 'truyennew','theloai','count','favourite','listfavourite','truyenhay'));
@@ -104,10 +104,10 @@ class WebsiteController extends Controller
     }
     public function session_view($id)
     {
-        $session = session::find($id);
+        $session = Chapter::find($id);
         $theloai = theloai::orderBy('id', 'DESC')->get();
         $tendms = dmtruyen::All();
-        $session_truyen = session::orderBy('id', 'ASC')->where('id_product', $session->id_product)->paginate(5);
+        $session_truyen = Chapter::orderBy('id', 'ASC')->where('id_product', $session->id_product)->paginate(5);
         $biendem = count($session_truyen);
         $truyenhay = DB::table('products')->orderBy('view_product', 'DESC')->where('kichhoat', 0)->paginate(14);
         $listfavourite = favourite::with('Favourite_product')->orderBy('id','DESC')->where('user_id', FacadesSession::get('id'))->paginate(10);
@@ -118,17 +118,17 @@ class WebsiteController extends Controller
     {   //@Lấy ra bình luận
         $comment = Comment::with('Comment_user')->orderBy('id', 'DESC')-> where('session_id',$id)->paginate(4);
         $tendms = dmtruyen::orderBy('id', 'DESC')->get();
-        $view_session = session::find($id);
+        $view_session = Chapter::find($id);
         $theloai = theloai::orderBy('id', 'DESC')->get();
-        $all_session = session::orderBy('id', 'ASC')->where('kichhoat', '0')->where('id_product', $view_session->id_product)->get();
+        $all_session = Chapter::orderBy('id', 'ASC')->where('kichhoat', '0')->where('id_product', $view_session->id_product)->get();
         //@ lấy ra id kế tiếp dựa trên id session
-        $next_session = session::where('id_product', $view_session->id_product)->where('id', '>', $view_session->id)->min('id');
-        $pre_session = session::where('id_product', $view_session->id_product)->where('id', '<', $view_session->id)->max('id');
+        $next_session = Chapter::where('id_product', $view_session->id_product)->where('id', '>', $view_session->id)->min('id');
+        $pre_session = Chapter::where('id_product', $view_session->id_product)->where('id', '<', $view_session->id)->max('id');
         //@ lấy ra một mảng trong bảng session dựa trên id của truyện và id bẳng với id của session kế tiếp
-        $next_slug = session::orderBy('id', 'DESC')->where('id_product', $view_session->id_product)->where('id', $next_session)->get();
-        $pre_slug = session::orderBy('id', 'DESC')->where('id_product', $view_session->id_product)->where('id', $pre_session)->get();
-        $max_id = session::where('id_product', $view_session->id_product)->orderBy('id', 'DESC')->first();
-        $min_id = session::where('id_product', $view_session->id_product)->orderBy('id', 'ASC')->first();
+        $next_slug = Chapter::orderBy('id', 'DESC')->where('id_product', $view_session->id_product)->where('id', $next_session)->get();
+        $pre_slug = Chapter::orderBy('id', 'DESC')->where('id_product', $view_session->id_product)->where('id', $pre_session)->get();
+        $max_id = Chapter::where('id_product', $view_session->id_product)->orderBy('id', 'DESC')->first();
+        $min_id = Chapter::where('id_product', $view_session->id_product)->orderBy('id', 'ASC')->first();
         //  dd($view_session->id_product);
         //@ lấy ra slug_session từ mẳng next_slug
         foreach ($next_slug as $item) {
@@ -138,7 +138,7 @@ class WebsiteController extends Controller
             $pre_slug = $item->slug_session;
         }
         //@tăng view_session
-        $view_session = session::where('id',$id)->first();
+        $view_session = Chapter::where('id',$id)->first();
 
         $view_session->view_session = $view_session->view_session+1;
         $view_session->save();
