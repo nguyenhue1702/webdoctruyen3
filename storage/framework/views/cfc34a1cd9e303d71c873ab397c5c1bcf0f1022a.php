@@ -61,9 +61,15 @@
                                 width="70px" height="85px"></td>
                         <td><?php echo e($truyen->slug_product); ?></td>
                         <td>
+                            <?php if(Session::get('roleUser') == 2): ?>
                             <input  type="checkbox" class="toggle-hot" data-id="<?php echo e($truyen->id); ?>"
                                 data-toggle="toggle" data-style="slow" data-on="ON"
                                 data-off="OFF"<?php echo e($truyen->hot == false ? 'checked' : ''); ?>>
+                            <?php else: ?>
+                                <input disabled type="checkbox" class="toggle-hot" data-id="<?php echo e($truyen->id); ?>"
+                                data-toggle="toggle" data-style="slow" data-on="ON"
+                                data-off="OFF"<?php echo e($truyen->hot == false ? 'checked' : ''); ?>>
+                            <?php endif; ?>
                         </td>
 
                         <td class="expandable-cell">
@@ -80,9 +86,16 @@
                                 data-off="Updating"<?php echo e($truyen->tinhtrang == true ? 'checked' : ''); ?>>
                         </td>
                         <td>
-                            <input  type="checkbox" class="toggle-edit toggle-product" data-id="<?php echo e($truyen->id); ?>"
+                            <?php if(Session::get('roleUser') == 2): ?>
+                                <input  type="checkbox" class="toggle-edit toggle-product" data-id="<?php echo e($truyen->id); ?>"
                                 data-toggle="toggle" data-style="slow" data-on="Enabled"
                                 data-off="Disabled"<?php echo e($truyen->kichhoat == false ? 'checked' : ''); ?>>
+                            <?php else: ?>
+                                <input disabled type="checkbox" class="toggle-edit toggle-product" data-id="<?php echo e($truyen->id); ?>"
+                                data-toggle="toggle" data-style="slow" data-on="Enabled"
+                                data-off="Disabled"<?php echo e($truyen->kichhoat == false ? 'checked' : ''); ?>>
+                            <?php endif; ?>
+
                         </td>
                         <td>
                             <div class="thaotac">

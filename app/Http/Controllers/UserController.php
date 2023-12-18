@@ -6,6 +6,7 @@ use App\Http\Requests\AdminRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\RegisterModel;
 use App\Models\User;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -105,6 +106,10 @@ class UserController extends Controller
         $news->email = $request->email;
         $news->password = $request->password;
         $news->save();
+
+        if ($request->role == 1) {
+            Author::create(['name_author' => $news->name, 'img_author' => 'not yet', 'country_author' => 'not yet', 'date_author' => 'not yet']);
+        }
         return redirect()->route('list_users')->with('ok', "Phân quyền thành công !");
     }
     public function user_article()

@@ -90,7 +90,7 @@
                 </div>
                 <div class="acount ">
                     @if (Session::has('name'))
-                        <div class="dropdown user-web" style="width: 130px">
+                        <div class="dropdown user-web" style="width: 210px">
                             <a class=" dropdown-toggle name-user" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Session::get('name') }}
@@ -99,16 +99,16 @@
 
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('info') }}"><i
-                                            class="bi bi-person-fill"></i> &nbsp;&nbsp; Info</a></li>
+                                            class="bi bi-person-fill"></i> &nbsp;&nbsp; Thông Tin</a></li>
                                 <li><a class="dropdown-item" href="{{ route('ds_article') }}"><i
-                                            class="bi bi-pencil-fill"></i> &nbsp;&nbsp;Article</a></li>
+                                            class="bi bi-pencil-fill"></i> &nbsp;&nbsp;Danh Sách Truyện</a></li>
                                 <li><a class="dropdown-item" href="{{ route('Logout') }}"><i
-                                            class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;Logout</a></li>
+                                            class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;Đăng Xuất</a></li>
                             </ul>
                         </div>
                     @else
-                        <button><a href="{{ route('FormLoginAdmin') }}">Login</a></button>&nbsp;&nbsp;
-                        <button><a href="{{ route('TrangDangKi') }}">Register</a></button>
+                        <button><a href="{{ route('FormLoginAdmin') }}">Đăng Nhập</a></button>&nbsp;&nbsp;
+                        <button><a href="{{ route('TrangDangKi') }}">Đăng Ký</a></button>
                     @endif
                 </div>
             </div>
@@ -191,10 +191,10 @@
                                 @csrf
                                 <div class="timkiem" data-url="{{ route('timkiem_ajax') }}">
                                     <input class="form-control me-2" type="search" id="keywords" name="key"
-                                        placeholder="Search Comics" aria-label="Search " style="font-size:16px">
+                                        placeholder="Tìm kiếm truyện" aria-label="Search " style="font-size:16px">
                                     <div id="search_ajax"></div>
                                 </div>
-                                <button class="btn btn-outline-success" type="submit">Search </button>
+                                <button class="btn btn-outline-success" style="width: 100px" type="submit">Tìm Kiếm</button>
                             </form>
                         </div>
                     </div>
@@ -233,7 +233,7 @@
 
             <h3 class="wow  fadeInLeft">Web<span>Truyện</span></h3>
             <p class="footer-links">
-                <a href="#" class="link-1">Home</a>
+                <a href="#" class="link-1">Trang chủ</a>
                 <a href="#">Blog</a>
                 <a href="#">Pricing</a>
                 <a href="#">About</a>
@@ -258,7 +258,7 @@
         </div>
         <div class="footer-right">
             <p class="footer-company-about">
-                <span>About Us</span>
+                <span>Về chúng tôi</span>
                 Website truyện Online Update nhanh nhất với đầy đủ các truyện hot , truyện hay và mới nhất như truyện
                 cười,truyện teen,vv. được cập nhật liên tục . Chúc các bạn mê đọc truyện có 1 phút giây thư giãn tuyệt
                 vời .

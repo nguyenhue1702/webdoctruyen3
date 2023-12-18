@@ -62,9 +62,15 @@
                                 width="70px" height="85px"></td>
                         <td>{{ $truyen->slug_product }}</td>
                         <td>
+                            @if (Session::get('roleUser') == 2)
                             <input  type="checkbox" class="toggle-hot" data-id="{{ $truyen->id }}"
                                 data-toggle="toggle" data-style="slow" data-on="ON"
                                 data-off="OFF"{{ $truyen->hot == false ? 'checked' : '' }}>
+                            @else
+                                <input disabled type="checkbox" class="toggle-hot" data-id="{{ $truyen->id }}"
+                                data-toggle="toggle" data-style="slow" data-on="ON"
+                                data-off="OFF"{{ $truyen->hot == false ? 'checked' : '' }}>
+                            @endif
                         </td>
 
                         <td class="expandable-cell">
@@ -81,9 +87,16 @@
                                 data-off="Updating"{{ $truyen->tinhtrang == true ? 'checked' : '' }}>
                         </td>
                         <td>
-                            <input  type="checkbox" class="toggle-edit toggle-product" data-id="{{ $truyen->id }}"
+                            @if (Session::get('roleUser') == 2)
+                                <input  type="checkbox" class="toggle-edit toggle-product" data-id="{{ $truyen->id }}"
                                 data-toggle="toggle" data-style="slow" data-on="Enabled"
                                 data-off="Disabled"{{ $truyen->kichhoat == false ? 'checked' : '' }}>
+                            @else
+                                <input disabled type="checkbox" class="toggle-edit toggle-product" data-id="{{ $truyen->id }}"
+                                data-toggle="toggle" data-style="slow" data-on="Enabled"
+                                data-off="Disabled"{{ $truyen->kichhoat == false ? 'checked' : '' }}>
+                            @endif
+
                         </td>
                         <td>
                             <div class="thaotac">

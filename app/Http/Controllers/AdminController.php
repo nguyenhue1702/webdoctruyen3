@@ -16,6 +16,8 @@ use App\Http\Requests\BannerRequest;
 use App\Http\Requests\TheloaiRequest;
 use App\Models\theloai;
 use App\Models\User;
+use App\Models\Product;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -24,9 +26,14 @@ class AdminController extends Controller
         return view('User/login');
     }
     public function HomeAdmin()
-    {   
-     
-        return view('Admin/home_admin');
+    {
+        $user = Session::get('id');
+        if (Session::get('role') > 1) {
+            $list_truyen = Product::with('danhmuc')->orderBy('id', 'DESC')->get();
+        } else {
+            $list_truyen = Product::with('danhmuc')->orderBy('id', 'DESC')->where('id_author', $user)->get();
+        }
+        return view('Admin/product_list', compact('list_truyen'));
     }
 
     public function ShowProFile()
@@ -80,7 +87,7 @@ class AdminController extends Controller
         $news->save();
         return redirect()->route('comic_category')->with('ok', "Cập Nhật Thành Công");
     }
-    //@ XỬ LÝ THỂ LOẠI   ADMIN   
+    //@ XỬ LÝ THỂ LOẠI   ADMIN
     public function page_theloai()
     {
         $all_theloai = theloai::All();
@@ -121,7 +128,7 @@ class AdminController extends Controller
         return redirect()->route('page_theloai')->with('ok', "Cập Nhật Thành Công");
     }
 
-    //@ XU LÝ TÁC GIẢ       ADMIN   
+    //@ XU LÝ TÁC GIẢ       ADMIN
     public function ListAuthor()
     {
         $authors = Author::orderby('id', 'DESC')->get();
@@ -242,7 +249,7 @@ class AdminController extends Controller
         $news->save();
         return redirect()->route('Publishing')->with('ok', "Cập Nhật Thành Công");
     }
-    //@ XỬ LÝ BANNER   ADMIN     
+    //@ XỬ LÝ BANNER   ADMIN
     public function ListBanner()
     {
         $banners = Banner::all();

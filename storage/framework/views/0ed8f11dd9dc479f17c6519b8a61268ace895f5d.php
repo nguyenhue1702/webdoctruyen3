@@ -20,8 +20,8 @@
   <div class="form-login">
     <div class="row">
       <div class="col-7">
-      <h1>Hello, Friend!</h1>
-      <p>Enter your personal details and start journey with us</p>
+      <h1>Xin Chào Bạn !</h1>
+      <p>Hãy nhập thông tin cá nhân của bạn và bắt đầu hành trình với chúng tôi</p>
       <!-- <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_z1tujjy0.json"  background="transparent"  speed="1"  style="width: 400px; height: 400px; "  loop  autoplay></lottie-player> -->
       </div>
       <div class="col-5">
@@ -29,14 +29,14 @@
         <form action="<?php echo e(route('LoginAdmin')); ?>" method="POST">
     <?php echo csrf_field(); ?>
           <div class="title-login">
-            <h2>Login</h2>
-            
+            <h2>Đăng Nhập</h2>
+
             <a href="<?php echo e(route('Home')); ?>"><i class='bx bxs-home home'></i></a>
-           
+
           </div>
           <div class="content-login">
-         
-                <div class="input-box"><input type="text"  autofocus name="email"  autocomplete="off">
+
+                <div class="input-box"><input type="text" placeholder="Nhập Email" autofocus name="email"  autocomplete="off">
                 <label for="">Nhập Email</label>
               </div>
               <?php $__errorArgs = ['email'];
@@ -50,10 +50,10 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                 <div class="input-box">
-                <input class="tuan" id="pass"type="password" name="password" >
+                <input class="tuan" id="pass"type="password" placeholder="Nhập Password" name="password" >
                 <i class="fa-solid fa-eye-slash" style="color: black" id="eye" onclick="toggle()"></i>
                   <label for="">Nhập Password</label>
-               
+
                 </div>
                 <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -65,7 +65,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-            
+
               <div>
 
                 <button>Đăng Nhập</button>
@@ -137,4 +137,5 @@ unset($__errorArgs, $__bag); ?>
   <?php endif; ?>
 
 </body>
-</html><?php /**PATH C:\laragon\www\webdoctruyen3\resources\views/User/login.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH C:\laragon\www\webdoctruyen3\resources\views/User/login.blade.php ENDPATH**/ ?>

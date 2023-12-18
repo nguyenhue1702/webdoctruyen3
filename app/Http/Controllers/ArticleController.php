@@ -12,6 +12,7 @@ class ArticleController extends Controller
     //
     public function ListBaiViet(){
         $baiviets= baiviet::All();
+        dd($baiviets);
         return view('Admin/article_list')->with('baiviets',$baiviets);
     }
     public function form_create_article(){
@@ -22,7 +23,7 @@ class ArticleController extends Controller
         $baiviet = new baiviet();
         $baiviet->name_bv=$request->name_bv;
         $baiviet->info_bv=$request->info_bv;
-        
+
         $get_img=$request->file('hinhanh_bv');
         if($get_img){
             $new_img= rand(0,999).'.'.$get_img->getClientOriginalExtension();//đổi duôi thành đuôi hình ảnh
@@ -48,7 +49,7 @@ class ArticleController extends Controller
      public function updatebv(Request $request, $id)
        {
            $news = baiviet::find($id);
-          $news->name_bv= $request->name_bv; 
+          $news->name_bv= $request->name_bv;
           $news->info_bv=$request->info_bv;
           $get_img=$request->file('hinhanh_bv');
           if($get_img){
@@ -57,7 +58,7 @@ class ArticleController extends Controller
               $news->hinhanh_bv=$new_img;
               $news->save();
            return redirect()->route('ListArticle')->with('ok',"Cập Nhật Thành Công");
-      
+
 }
 // DB::table('baiviets')->where('id',$id)->update($news);
 $news->save();

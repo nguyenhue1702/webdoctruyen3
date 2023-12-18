@@ -52,7 +52,7 @@
 
 <body>
     <div id="notifDiv"></div>
-    <nav class="sidebar-edit close">
+    <nav class="sidebar-edit">
         <header>
             <div class="image-text">
                 <span class="image">
@@ -75,7 +75,7 @@
                             <?php if(Session::get('roleUser') == 2): ?>
                                 Admin
                             <?php else: ?>
-                                Pesonnel
+                                Tác Giả
                             <?php endif; ?>
                         <?php endif; ?>
                     </span>
@@ -94,19 +94,11 @@
                     <li class="nav-link-edit">
                         <a href="<?php echo e(route('HomeAdmin')); ?>">
                             <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home</span>
+                            <span class="text nav-text">Trang Chủ</span>
                         </a>
                     </li>
                     <?php if(Session::get('roleUser') >= 1): ?>
-                    <h3>Content</h3>
-                    <li class="nav-link-edit">
-                        <a href="<?php echo e(route('ListArticle')); ?>">
-                            <i class="fa-solid fa-square-pen icon"></i>
-                            <span class="text nav-text">Article</span>
-                        </a>
-                    </li>
-                    <?php endif; ?>
-                    <?php if(Session::get('roleUser') >= 1): ?>
+                    <h3>Nội Dung</h3>
                     <li class="nav-link-edit">
                         <a href="<?php echo e(route('ListBanner')); ?>">
                             <i class='bx bx-images icon'></i>
@@ -115,7 +107,7 @@
                     </li>
                     <?php endif; ?>
 
-                        <h3>Admin </h3>
+                        <h3>Quản Lý</h3>
 
                         <li class="nav-link-edit">
                             <a href="<?php echo e(route('listproduct')); ?>">
@@ -153,15 +145,9 @@
                                 <span class="text nav-text">Quản Lý Tác Giả</span>
                             </a>
                         </li>
-                        <li class="nav-link-edit">
-                            <a href="<?php echo e(route('Publishing')); ?>">
-                                <i class="fa-solid fa-house-laptop icon"></i>
-                                <span class="text nav-text">Nhà Xuất Bản</span>
-                            </a>
-                        </li>
                     <?php endif; ?>
 
-                    <h3>User</h3>
+                    <h3>Người Dùng</h3>
                     <?php if(Session::get('roleUser') > 1): ?>
                         <li class="nav-link-edit">
                             <a href="<?php echo e(route('list_users')); ?>">
@@ -197,7 +183,7 @@
                 <li class="">
                     <a href="<?php echo e(route('Logout')); ?>">
                         <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
+                        <span class="text nav-text">Đăng Xuất</span>
                     </a>
                 </li>
 
