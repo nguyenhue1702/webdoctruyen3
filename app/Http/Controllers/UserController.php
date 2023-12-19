@@ -32,7 +32,6 @@ class UserController extends Controller
     public function DangKiTK(UserRequest $request)
     {
 
-
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;

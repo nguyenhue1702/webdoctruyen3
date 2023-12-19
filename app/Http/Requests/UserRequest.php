@@ -26,9 +26,9 @@ class UserRequest extends FormRequest
         return [
             'email' => 'required|email|unique:App\Models\User,email',
             'name' => 'required|max:50',
-            'password'=>'required|min:6',
-            'password_confirmation' => 'required|confirmed'
-            
+            'password'=>'required|min:6|confirmed',
+            'password_confirmation' => 'required'
+
         ];
     }
     public function messages()
@@ -38,7 +38,7 @@ class UserRequest extends FormRequest
                 'min'=>'Số kí tự phải lớn hơn :min(*)',
                 'max'=>'Số kí tự phải bé hơn :max(*)',
                 'unique'=> ':attribute Đã Tồn Tại !',
-                'confirmed'=>':attribute Nhập Lại Không Chính Xác (*)'];
+                'confirmed'=>':attribute Không Chính Xác (*)'];
     }
     public function attributes()
     {
@@ -47,8 +47,8 @@ class UserRequest extends FormRequest
             'email'=> 'Email',
             'password'=>'Mật Khẩu',
             'password_confirmation'=>'Mật Khẩu Nhập Lại',
-           
+
         ];
     }
-    
+
 }

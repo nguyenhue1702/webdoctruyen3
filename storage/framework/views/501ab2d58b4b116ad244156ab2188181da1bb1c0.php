@@ -241,7 +241,7 @@
                 <a href="#">Faq</a>
                 <a href="#">Contact</a>
             </p>
-            <p class="footer-company-name">WebTruyen© 2022</p>
+            <p class="footer-company-name">WebTruyen© 2023</p>
         </div>
         <div class="footer-center">
             <div>
