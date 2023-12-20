@@ -111,14 +111,21 @@ class WebsiteController extends Controller
         $biendem = count($session_truyen);
         $truyenhay = DB::table('products')->orderBy('view_product', 'DESC')->where('kichhoat', 0)->paginate(14);
         $listfavourite = favourite::with('Favourite_product')->orderBy('id','DESC')->where('user_id', FacadesSession::get('id'))->paginate(10);
-        return view('Website/session_view')->with(compact('tendms', 'session', 'biendem', 'session_truyen','theloai','truyenhay','listfavourite'));
+        $comment = Comment::with('Comment_user')->orderBy('id', 'DESC')-> where('session_id',$id)->paginate(4);
+        $view_session = Chapter::find($id);
+        $view_session = Chapter::where('id',$id)->first();
+
+        $view_session->view_session = $view_session->view_session+1;
+        $view_session->save();
+
+        return view('Website/session_view')->with(compact('view_session','tendms', 'session', 'biendem', 'session_truyen','theloai','truyenhay','listfavourite','comment'));
     }
     //@ Phần xử lí đọc truyện
     public function doctruyen($id)
     {   //@Lấy ra bình luận
         $comment = Comment::with('Comment_user')->orderBy('id', 'DESC')-> where('session_id',$id)->paginate(4);
-        $tendms = dmtruyen::orderBy('id', 'DESC')->get();
         $view_session = Chapter::find($id);
+        $tendms = dmtruyen::orderBy('id', 'DESC')->get();
         $theloai = theloai::orderBy('id', 'DESC')->get();
         $all_session = Chapter::orderBy('id', 'ASC')->where('kichhoat', '0')->where('id_product', $view_session->id_product)->get();
         //@ lấy ra id kế tiếp dựa trên id session

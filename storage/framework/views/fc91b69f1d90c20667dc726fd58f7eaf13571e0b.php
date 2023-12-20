@@ -97,7 +97,7 @@
                             <span class="text nav-text">Trang Chủ</span>
                         </a>
                     </li>
-                    <?php if(Session::get('roleUser') >= 1): ?>
+                    <?php if(Session::get('roleUser') == 2): ?>
                     <h3>Nội Dung</h3>
                     <li class="nav-link-edit">
                         <a href="<?php echo e(route('ListBanner')); ?>">

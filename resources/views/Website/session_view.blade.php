@@ -40,7 +40,7 @@
                                     @endforeach
                                 </div>
                         <li><i class="bi bi-info-circle"></i><span>&nbsp;&nbsp;Số chapter hiện tại :&nbsp;&nbsp;{{ $biendem }}</span></li>
-                       
+
                     </ul>
                 </div>
 
@@ -54,7 +54,7 @@
                     <button type="button" class="btn btn-primary"><i class="bi bi-list-ol"></i><a
                             href="#danhsachchuong">&nbsp;&nbsp;Các Chương</a></button>
                 </div>
-                
+
                 <div class="doctruyen">
                     <button type="button" class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;<a
                             href="{{ route('doctruyen', [$session->id,$session->Product->slug_product, $session->slug_session]) }}">Đọc Chương</a></button>
@@ -76,44 +76,51 @@
                                     src="/uploads/img_truyen/{{ $item->Product->img_product }}" alt="" width="50px"
                                     height="50px">&nbsp;&nbsp;&nbsp;Tập {{ $item->session }} : {{$item->title_session}}</a></li>
                     @endforeach
-                   
+
                 </ul>
             </div>
             <div>{{$session_truyen->links()}}</div>
         </div>
         {{-- ----phan nhan xet------ --}}
-        <div class="row  reponsive-col9  formnen">
+        <div class="  reponsive-col9  formnen repon ">
             <div class="styleh3">
-                <h3>NHẬN XÉT CỦA ĐỘC GIẢ </h3>
+                <h3 class="style-lai">&nbsp;&nbsp;NHẬN XÉT </h3>
             </div>
-            <form action="">
-                <div class="nhanxet">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Enter Comment....."></textarea>
-                </div>
-                <div class="binhluan">
-                    <button type="button" class="btn btn-sm btn-success"><i
-                            class="bi bi-send"></i>&nbsp;&nbsp;Send</button>
-                </div>
+            <form action="{{route('insert_comment')}}" method="post">
+                @csrf
+            <input type="hidden" name="user_id" value={{ Session::get('id') }}>
+            <input type="hidden" name="session_id" value="{{$view_session->id}}">
+            <div class="nhanxet">
+                <textarea name="comment" id="" cols="30" rows="10" placeholder="Enter Comment....."></textarea>
+            </div>
+
+            <div class="binhluan">
+                <button type="submit" class="btn btn-sm btn-success"><i class="bi bi-send"></i>&nbsp;&nbsp;Send</button>
+            </div>
             </form>
+            @foreach($comment as $item)
             <div class="showcm">
                 <div class="info_user">
                     <div>
                         <img src="/uploads/img_truyen/77.jpg" alt="" width="50px" height="50px">
                     </div>
                     <div>
-                        Nguyễn Thị Huệ
+                        {{$item->Comment_user->name}}
                     </div>
-                    <div>
-                        25/01/2022
+                    <div class="ngaythang-comment">
+                       <small >{{$item->created_at}}</small>
                     </div>
                 </div>
                 <div class="ndcm">
-                    Bootstrap’s interactive components—such as modal dialogs, dropdown menus, and custom tooltips—are
-                    designed to work for touch, mouse, and keyboard users. Through the use of relevant WAI-ARIA roles and
-                    attributes, these components should also be understandable and operable using assistive technologies
-                    (such as screen readers).
+                    {{ $item->comment}}
                 </div>
             </div>
+            @endforeach
+
+            <div class="mt-3 ">
+                {{ $comment->links() }}
+            </div>
+
         </div>
         {{-- ------Truyen cung loai--------- --}}
     </div>
