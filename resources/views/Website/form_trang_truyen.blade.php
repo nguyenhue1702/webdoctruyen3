@@ -59,8 +59,8 @@
                         <button type="button" class="btn btn-primary"><i class="bi bi-list-ol"></i><a id="clickchuong"
                                 href="#danhsachchuong">&nbsp;&nbsp;Các Chương</a></button>
                                 @php
-               
-                
+
+
             @endphp
                                 @if($count == 0)
                         <form action="{{route('add_favourite')}}" method="post">
@@ -88,9 +88,17 @@
                     </div>
                     <div class="doctruyen">
                         @if ($session_dau)
-                            <button type="button" class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;<a
-                                    href="{{ route('doctruyen', [$session_dau->id, $session_dau->Product->slug_product, $session_dau->slug_session]) }}">Đọc
-                                    Truyện</a></button>
+                            <button
+                            @if ($age <= 35)
+                                type="submit"
+                                href="{{ route('doctruyen', [$session_dau->id, $session_dau->Product->slug_product, $session_dau->slug_session]) }}"
+                            @else
+                                type="button"
+                                onclick="alertCart()"
+                            @endif
+                            class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;<a
+                            >Đọc
+                            Truyện</a></button>
                         @else
                             <button type="button" class="btn btn-danger"><i
                                     class="bi bi-exclamation-diamond"></i>&nbsp;&nbsp;<a href="">Chưa Có
@@ -150,9 +158,9 @@
                         Mời Bạn Quay Lại Sau !</div>
                         @endif
             </div>
-            
+
             <div>{{ $session->links() }}</div>
-           
+
         </div>
         {{-- ----phan nhan xet------ --}}
 
@@ -184,9 +192,20 @@
         @include('Website/menudanhmuc')
     </div>
     {{-- ------------------ --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
         new WOW().init();
+
+        function alertCart(){
+            swal({
+            title: "Truyện không phù hợp với lứa tuổi của bạn!",
+            text: "!!!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            });
+        }
     </script>
 
 

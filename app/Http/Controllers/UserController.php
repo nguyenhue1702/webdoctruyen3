@@ -31,10 +31,10 @@ class UserController extends Controller
     }
     public function DangKiTK(UserRequest $request)
     {
-
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->birthday = $request->birthday;
         $user->password = md5($request->password);
         $user->save();
 
@@ -52,6 +52,7 @@ class UserController extends Controller
             Session::put('id', $result->id);
             Session::put('isLogin', true);
             Session::put('roleUser', $result->role);
+            Session::put('birthday', $result->birthday);
             if ($result->role === 0) {
                 return redirect()->route('Home')->with('ok', 'Đăng nhập Thành công');
                 //tài khoản bình thường

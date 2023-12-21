@@ -15,7 +15,17 @@
         <link rel="stylesheet" href="{{ asset('/css/animate.css')}}">
     <title>Đăng ký</title>
 </head>
-
+<style>
+    input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+}
+</style>
 <body>
     <form action="{{ route('DangKi') }}" method="POST">
         @csrf
@@ -44,10 +54,12 @@
                                 name="name" value="{{old('name')}}">
                             <i class="fa-solid fa-user" style="color: black"></i>
                         </div>
-                    </div>
-                    @error('name')
+
+                        @error('name')
                         <span style="color: rgb(255, 0, 0)">{{ $message }}</span>
-                    @enderror
+                        @enderror
+                    </div>
+
                     <div class="mb-3 tranform-i">
                         <label for="exampleInputEmail1" class="form-label">Nhập Địa Chỉ Email</label>
                         <div class="input-i">
@@ -59,8 +71,20 @@
                         @error('email')
                             <span style="color: red">{{ $message }}</span>
                         @enderror
-
                     </div>
+
+                    <div class="mb-3 tranform-i">
+                        <label for="exampleInputEmail1" class="form-label">Nhập Ngày Sinh</label>
+                        <div class="input-i">
+                            <input type="date" class="form-control" id="birthday"
+                                 placeholder="Nhập Ngày Sinh" name="birthday" value="{{old('birthday')}}">
+                        </div>
+
+                        @error('birthday')
+                            <span style="color: red">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nhập Mật Khẩu</label>
                         <div class="input-i">

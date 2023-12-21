@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('trangtruyen'); ?>
 
 
@@ -61,8 +60,8 @@
                         <button type="button" class="btn btn-primary"><i class="bi bi-list-ol"></i><a id="clickchuong"
                                 href="#danhsachchuong">&nbsp;&nbsp;Các Chương</a></button>
                                 <?php
-               
-                
+
+
             ?>
                                 <?php if($count == 0): ?>
                         <form action="<?php echo e(route('add_favourite')); ?>" method="post">
@@ -90,9 +89,17 @@
                     </div>
                     <div class="doctruyen">
                         <?php if($session_dau): ?>
-                            <button type="button" class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;<a
-                                    href="<?php echo e(route('doctruyen', [$session_dau->id, $session_dau->Product->slug_product, $session_dau->slug_session])); ?>">Đọc
-                                    Truyện</a></button>
+                            <button
+                            <?php if($age <= 35): ?>
+                                type="submit"
+                                href="<?php echo e(route('doctruyen', [$session_dau->id, $session_dau->Product->slug_product, $session_dau->slug_session])); ?>"
+                            <?php else: ?>
+                                type="button"
+                                onclick="alertCart()"
+                            <?php endif; ?>
+                            class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;<a
+                            >Đọc
+                            Truyện</a></button>
                         <?php else: ?>
                             <button type="button" class="btn btn-danger"><i
                                     class="bi bi-exclamation-diamond"></i>&nbsp;&nbsp;<a href="">Chưa Có
@@ -153,9 +160,9 @@
                         Mời Bạn Quay Lại Sau !</div>
                         <?php endif; ?>
             </div>
-            
+
             <div><?php echo e($session->links()); ?></div>
-           
+
         </div>
         
 
@@ -187,9 +194,20 @@
         <?php echo $__env->make('Website/menudanhmuc', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
     
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
         new WOW().init();
+
+        function alertCart(){
+            swal({
+            title: "Truyện không phù hợp với lứa tuổi của bạn!",
+            text: "!!!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            });
+        }
     </script>
 
 

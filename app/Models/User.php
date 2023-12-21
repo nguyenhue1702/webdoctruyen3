@@ -20,7 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'password',
-        'email'
+        'email',
+        'birthday'
     ];
     public function Baiviet_user(){
         return $this->hasMany('App\Models\articleuser');
@@ -42,5 +43,5 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-  
+
 }

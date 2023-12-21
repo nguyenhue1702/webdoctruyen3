@@ -15,7 +15,17 @@
         <link rel="stylesheet" href="<?php echo e(asset('/css/animate.css')); ?>">
     <title>Đăng ký</title>
 </head>
-
+<style>
+    input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+}
+</style>
 <body>
     <form action="<?php echo e(route('DangKi')); ?>" method="POST">
         <?php echo csrf_field(); ?>
@@ -44,17 +54,19 @@
                                 name="name" value="<?php echo e(old('name')); ?>">
                             <i class="fa-solid fa-user" style="color: black"></i>
                         </div>
-                    </div>
-                    <?php $__errorArgs = ['name'];
+
+                        <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
                         <span style="color: rgb(255, 0, 0)"><?php echo e($message); ?></span>
-                    <?php unset($message);
+                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                    </div>
+
                     <div class="mb-3 tranform-i">
                         <label for="exampleInputEmail1" class="form-label">Nhập Địa Chỉ Email</label>
                         <div class="input-i">
@@ -73,8 +85,27 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-
                     </div>
+
+                    <div class="mb-3 tranform-i">
+                        <label for="exampleInputEmail1" class="form-label">Nhập Ngày Sinh</label>
+                        <div class="input-i">
+                            <input type="date" class="form-control" id="birthday"
+                                 placeholder="Nhập Ngày Sinh" name="birthday" value="<?php echo e(old('birthday')); ?>">
+                        </div>
+
+                        <?php $__errorArgs = ['birthday'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <span style="color: red"><?php echo e($message); ?></span>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                    </div>
+
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nhập Mật Khẩu</label>
                         <div class="input-i">

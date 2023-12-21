@@ -16,6 +16,7 @@ use App\Models\Chapter;
 use App\Models\thuocdanh;
 use App\Models\thuocloai;
 use App\Models\theloai;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Session as FacadesSession;
 
@@ -78,7 +79,13 @@ class WebsiteController extends Controller
         $session_dau = Chapter::orderBy('id', 'ASC')->where('id_product', $id)->first();
 
         $sl_session = count($session); //số lượng chương
-        return view('Website/form_trang_truyen')->with(compact('tendms', 'session', 'cungloai', 'truyen', 'sl_session', 'session_dau', 'truyennew','theloai','count','favourite','listfavourite','truyenhay'));
+
+        $user = FacadesSession::get('birthday');
+        $datetime1 = date_create($user);
+        $datetime2 = date_create(Carbon::now('Asia/Ho_Chi_Minh'));
+        $age = (int)substr(date_diff($datetime1, $datetime2)->format('%R%y'), -2);
+
+        return view('Website/form_trang_truyen')->with(compact('age','tendms', 'session', 'cungloai', 'truyen', 'sl_session', 'session_dau', 'truyennew','theloai','count','favourite','listfavourite','truyenhay'));
     }
     //@TRANG XEM THEO TỪNG DANH MỤC
     public function xemtheodanhmuc($id)
