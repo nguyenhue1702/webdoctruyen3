@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\theloai;
 use App\Models\thuocdanh;
 use App\Models\thuocloai;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
@@ -20,11 +21,12 @@ class ProductController extends Controller
     //@ các function xử lí Truyện ADMIN
     public function listproduct()
     {
-        $user = Session::get('id');
+        $user = Session::get('name');
         if (Session::get('role') > 1) {
             $list_truyen = Product::with('danhmuc')->orderBy('id', 'DESC')->get();
         } else {
-            $list_truyen = Product::with('danhmuc')->orderBy('id', 'DESC')->where('id_author', $user)->get();
+            $user_find = User::where('name', $user)->first();
+            $list_truyen = Product::with('danhmuc')->orderBy('id', 'DESC')->where('id_author', $user_find->id)->get();
         }
 
         return view('Admin/product_list')->with('list_truyen', $list_truyen);
@@ -54,6 +56,8 @@ class ProductController extends Controller
         if ($result) {
             return redirect()->route('create_product')->with('loi', "Đã Tồn Tại : $request->name_product");
         } else {
+            $author_find = Author::where('id', $request->id_author)->first();
+            $user_find = User::where('name', $author_find->name_author)->first();
             $truyen = new Product();
             $truyen->name_product = $request->name_product;
             $truyen->slug_product = $request->slug_product;
@@ -61,7 +65,8 @@ class ProductController extends Controller
             $truyen->hot = $request->hot;
             $truyen->tinhtrang = $request->tinhtrang;
             $truyen->kichhoat = $request->kichhoat;
-            $truyen->id_author = $request->id_author;
+            $truyen->id_author = $user_find->id;
+
             foreach ($request->danhmuc as  $item) {
                 $truyen->danhmuc_id = $item[0];
             }
