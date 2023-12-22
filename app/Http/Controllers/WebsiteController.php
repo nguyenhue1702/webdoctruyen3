@@ -81,11 +81,12 @@ class WebsiteController extends Controller
         $sl_session = count($session); //số lượng chương
 
         $user = FacadesSession::get('birthday');
+        $userRole = FacadesSession::get('role');
         $datetime1 = date_create($user);
         $datetime2 = date_create(Carbon::now('Asia/Ho_Chi_Minh'));
         $age = (int)substr(date_diff($datetime1, $datetime2)->format('%R%y'), -2);
 
-        return view('Website/form_trang_truyen')->with(compact('age','tendms', 'session', 'cungloai', 'truyen', 'sl_session', 'session_dau', 'truyennew','theloai','count','favourite','listfavourite','truyenhay'));
+        return view('Website/form_trang_truyen')->with(compact('userRole','age','tendms', 'session', 'cungloai', 'truyen', 'sl_session', 'session_dau', 'truyennew','theloai','count','favourite','listfavourite','truyenhay'));
     }
     //@TRANG XEM THEO TỪNG DANH MỤC
     public function xemtheodanhmuc($id)

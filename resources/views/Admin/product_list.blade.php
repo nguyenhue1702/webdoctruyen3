@@ -82,7 +82,11 @@
 
                         <td>{{ $truyen->Author->name_author }}</td>
                         <td>
-                            <input  type="checkbox" class="toggle-tinhtrang" data-id="{{ $truyen->id }}"
+                            <input
+                                @if (Session::get('id') !== $truyen->id_author)
+                                    disabled
+                                @endif
+                                type="checkbox" class="toggle-tinhtrang" data-id="{{ $truyen->id }}"
                                 data-toggle="toggle" data-style="slow" data-on="Full"
                                 data-off="Updating"{{ $truyen->tinhtrang == true ? 'checked' : '' }}>
                         </td>

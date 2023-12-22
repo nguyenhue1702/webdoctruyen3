@@ -88,17 +88,21 @@
                     </div>
                     <div class="doctruyen">
                         @if ($session_dau)
-                            <button
-                            @if ($age <= 35)
-                                type="submit"
-                                href="{{ route('doctruyen', [$session_dau->id, $session_dau->Product->slug_product, $session_dau->slug_session]) }}"
+                            @if ($userRole === null)
+                                <a style="color: white"
+                                    onclick="notLogin()"
+                                class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;Đọc
+                                Truyện</a>
                             @else
-                                type="button"
-                                onclick="alertCart()"
+                                <a style="color: white"
+                                @if ($age <= 35)
+                                    href="{{ route('doctruyen', [$session_dau->id, $session_dau->Product->slug_product, $session_dau->slug_session]) }}"
+                                @else
+                                    onclick="alertCart()"
+                                @endif
+                                class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;Đọc
+                                Truyện</a>
                             @endif
-                            class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;<a
-                            >Đọc
-                            Truyện</a></button>
                         @else
                             <button type="button" class="btn btn-danger"><i
                                     class="bi bi-exclamation-diamond"></i>&nbsp;&nbsp;<a href="">Chưa Có
@@ -192,7 +196,6 @@
         @include('Website/menudanhmuc')
     </div>
     {{-- ------------------ --}}
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
         new WOW().init();
@@ -200,7 +203,15 @@
         function alertCart(){
             swal({
             title: "Truyện không phù hợp với lứa tuổi của bạn!",
-            text: "!!!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            });
+        }
+
+        function notLogin(){
+            swal({
+            title: "Hãy đăng nhập để đọc truyện!",
             icon: "warning",
             buttons: true,
             dangerMode: true,

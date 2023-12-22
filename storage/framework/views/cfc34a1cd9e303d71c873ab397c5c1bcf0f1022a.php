@@ -81,7 +81,11 @@
 
                         <td><?php echo e($truyen->Author->name_author); ?></td>
                         <td>
-                            <input  type="checkbox" class="toggle-tinhtrang" data-id="<?php echo e($truyen->id); ?>"
+                            <input
+                                <?php if(Session::get('id') !== $truyen->id_author): ?>
+                                    disabled
+                                <?php endif; ?>
+                                type="checkbox" class="toggle-tinhtrang" data-id="<?php echo e($truyen->id); ?>"
                                 data-toggle="toggle" data-style="slow" data-on="Full"
                                 data-off="Updating"<?php echo e($truyen->tinhtrang == true ? 'checked' : ''); ?>>
                         </td>

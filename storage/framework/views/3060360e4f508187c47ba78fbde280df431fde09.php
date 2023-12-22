@@ -89,17 +89,21 @@
                     </div>
                     <div class="doctruyen">
                         <?php if($session_dau): ?>
-                            <button
-                            <?php if($age <= 35): ?>
-                                type="submit"
-                                href="<?php echo e(route('doctruyen', [$session_dau->id, $session_dau->Product->slug_product, $session_dau->slug_session])); ?>"
+                            <?php if($userRole === null): ?>
+                                <a style="color: white"
+                                    onclick="notLogin()"
+                                class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;Đọc
+                                Truyện</a>
                             <?php else: ?>
-                                type="button"
-                                onclick="alertCart()"
+                                <a style="color: white"
+                                <?php if($age <= 35): ?>
+                                    href="<?php echo e(route('doctruyen', [$session_dau->id, $session_dau->Product->slug_product, $session_dau->slug_session])); ?>"
+                                <?php else: ?>
+                                    onclick="alertCart()"
+                                <?php endif; ?>
+                                class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;Đọc
+                                Truyện</a>
                             <?php endif; ?>
-                            class="btn btn-success"><i class="fa-brands fa-readme"></i>&nbsp;&nbsp;<a
-                            >Đọc
-                            Truyện</a></button>
                         <?php else: ?>
                             <button type="button" class="btn btn-danger"><i
                                     class="bi bi-exclamation-diamond"></i>&nbsp;&nbsp;<a href="">Chưa Có
@@ -194,7 +198,6 @@
         <?php echo $__env->make('Website/menudanhmuc', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
     
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
         new WOW().init();
@@ -202,7 +205,15 @@
         function alertCart(){
             swal({
             title: "Truyện không phù hợp với lứa tuổi của bạn!",
-            text: "!!!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            });
+        }
+
+        function notLogin(){
+            swal({
+            title: "Hãy đăng nhập để đọc truyện!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
